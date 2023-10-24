@@ -12,6 +12,8 @@
   "license": "SEE LICENSE IN proprietary",
   "devDependencies": {
     "@types/mithril": "^2.2.3",
+    "concurrently": "^8.2.2",
+    "sass": "^1.69.4",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
     "webpack": "^5.89.0",
