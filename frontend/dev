@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
+
+npx concurrently \
+	"npx sass -w styles/style.scss public/style.css --style compressed" \
+	"npm run dev"
