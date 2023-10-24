@@ -22,7 +22,9 @@ module.exports = {
 		path: path.resolve(__dirname, "public"),
 	},
 	devServer: {
-		proxy: {},
+		proxy: {
+			"/api": "http://localhost:44252/",
+		},
 		historyApiFallback: {
 			index: "index.html",
 		},

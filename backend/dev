@@ -3,5 +3,5 @@
 cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
 
 npx concurrently \
-	"./backend/dev" \
-	"./frontend/dev"
+	"npx tsc --preserveWatchOutput -w" \
+	"npx nodemon ."
