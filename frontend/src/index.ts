@@ -1,21 +1,25 @@
 import m from "mithril";
-
-let counter = 0;
+import { Login, Menu, SignUp, Nav } from "./components";
+import { vsModePage } from "./vsmode/page";
 
 function App() {
-	return {
-		view: () => [
-			m("button", {
-				onclick: () => counter++,
-			}, "Increment"),
-			m("button", {
-				onclick: () => counter--,
-			}, "Decrement"),
-			m("p", `Counter is at ${counter}`),
-		],
-	};
+    return {
+        view: () => [
+			m("video#background-video[autoplay][muted][loop][disablePictureInPicture]", {
+				src: "bg.mp4",
+				oncontextmenu: (e:any) => { e.preventDefault(); }
+			}),
+			m(Nav),
+            m(Menu),
+            
+        ],
+
+    };
 }
 
 m.route(document.body, "/", {
-	"/": App,
+    "/": App,
+	"/login": Login,
+	"/signup": SignUp,
+	"/vsmode": vsModePage
 });
