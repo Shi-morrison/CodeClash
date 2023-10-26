@@ -1,5 +1,7 @@
 @import "./global.scss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @font-face {
     font-family: 'ITC Galliard STD Ultra';
@@ -152,3 +154,55 @@ video::-webkit-media-controls-enclosure {
     color:red;
     background-color: black;
 }
+//tailwind scuffed alt
+/* Equivalent CSS for .w-1/3 */
+.w-1\/3 {
+    width: 33.333333%;
+}
+
+/* Equivalent CSS for .p-4 */
+.p-4 {
+    padding: 1rem; /* Assuming 1rem = 16px */
+}
+
+/* Equivalent CSS for .text-xl */
+.text-xl {
+    font-size: 1.25rem; /* Assuming this is the size you desire for 'xl' */
+}
+
+/* Equivalent CSS for .font-bold */
+.font-bold {
+    font-weight: bold;
+}
+
+/* Equivalent CSS for .text-lg */
+.text-lg {
+    font-size: 1.125rem; /* Assuming this is the size you desire for 'lg' */
+}
+
+/* Equivalent CSS for .font-semibold */
+.font-semibold {
+    font-weight: 600; /* semibold weight */
+}
+
+/* Equivalent CSS for .h-64 */
+.h-64 {
+    height: 16rem; /* Assuming 1rem = 16px and .h-64 is 16rem height */
+}
+
+/* Equivalent CSS for .w-full */
+.w-full {
+    width: 100%;
+}
+
+/* Equivalent CSS for .bg-opacity-50 */
+.bg-opacity-50 {
+    background-color: rgba(255, 255, 255, 0.5); /* Assuming a white background. Modify the RGB values accordingly if it's different. */
+}
+
+/* Equivalent CSS for .blur-md */
+/* This will require a browser that supports the backdrop-filter property */
+.blur-md {
+    backdrop-filter: blur(12px); /* Assuming 'md' blur is 12px */
+}
+

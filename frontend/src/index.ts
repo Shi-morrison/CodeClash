@@ -1,6 +1,7 @@
 import m from "mithril";
 import { Login, Menu, SignUp, Nav } from "./components";
 import { vsModePage } from "./vsmode/page";
+import { gamePageContent } from "./game/gameContent";
 
 function App() {
     return {
@@ -21,5 +22,6 @@ m.route(document.body, "/", {
     "/": App,
 	"/login": Login,
 	"/signup": SignUp,
-	"/vsmode": vsModePage
+	"/vsmode": vsModePage,
+	"/game": gamePageContent
 });
