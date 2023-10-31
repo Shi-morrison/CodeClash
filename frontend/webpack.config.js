@@ -3,13 +3,15 @@ const path = require("path");
 module.exports = {
 	target: "web",
 	entry: {
-		"bundle": "./src/index.ts",
+		"bundle": "./src/index.tsx",
 	},
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
-				use: "ts-loader",
+				test: /\.(js|jsx|ts|tsx)$/,
+				use: {
+                    loader: "babel-loader",
+                },
 				exclude: /node_modules/,
 			  },
 			  {
@@ -24,7 +26,7 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: [".tsx", ".ts", ".js"],
+		extensions: [".tsx", ".ts", ".js", ",jsx"],
 	},
 	output: {
 		filename: "[name].js",
