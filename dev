@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env -S bash
 
 cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
 
