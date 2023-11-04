@@ -1,5 +1,6 @@
 {
   "name": "backend",
+  "type": "module",
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
@@ -14,6 +15,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
   }
 }
