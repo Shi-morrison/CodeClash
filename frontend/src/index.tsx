@@ -15,8 +15,8 @@ function App() {
         ),
     };
 
-
-    m.route(document.body, "/", {
-        "/": App,
-    });
 }
+
+m.route(document.body, "/", {
+    "/": App,
+});
