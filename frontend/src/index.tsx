@@ -6,7 +6,6 @@ function App() {
         view: () => (
             <div>
                 <Login/>
-                <h1 class="text-red-500">Hello world</h1>
             </div>
         ),
     };
