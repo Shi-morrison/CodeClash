@@ -1,19 +1,20 @@
 import m from "mithril";
 import { io } from "socket.io-client";
 
+import  Login from "./pages/Login";
+
 function App() {
-  const socket = io("http://localhost:3000");
+    const socket = io("http://localhost:3000");
 
-  socket.emit("ping");
+    socket.emit("ping");
+    return {
+        view: () => (
+            <div>
+                <Login/>
+            </div>
+        ),
+    };
 
-  return {
-    view: () => (
-      <div>
-        <h1>Hello world</h1>
-      </div>
-    ),
-  };
-}
 
 m.route(document.body, "/", {
   "/": App,
