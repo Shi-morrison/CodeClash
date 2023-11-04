@@ -491,30 +491,9 @@ video {
 .fixed {
   position: fixed;
 }
-.top-36 {
-  top: 9rem;
-}
 .left-1\/2 {
   left: 50%;
 }
-.top-1\/2 {
-  top: 50%;
-}
 .top-1\/4 {
   top: 25%;
-}
-.right-1\/2 {
-  right: 50%;
-}
-.flex {
-  display: flex;
-}
-.items-center {
-  align-items: center;
-}
-.justify-center {
-  justify-content: center;
-}
-.text-center {
-  text-align: center;
 }
