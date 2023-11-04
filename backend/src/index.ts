@@ -1,4 +1,24 @@
 import express from "express";
+import userRoutes from './api/routes/userRoutes';	// import the userRoutes module
+import mongoose from 'mongoose';
+import * as dotenv from 'dotenv';
+
+// dotenv.config() loads environment variables from a .env file into process.env
+dotenv.config();
+const MONGO_URI = process.env.MONGO_URI || 'missing';
+
+// Connect to the database
+async function connectDB() {
+	try {
+		await mongoose.connect(MONGO_URI, {
+
+		});
+		console.log('Database connected successfully');
+	} catch (error) {
+		console.error('Database connection failed:', error);
+	}
+}
+connectDB();
 
 // This is a randomly chosen port. The API server will listen on localhost:44252 .
 const PORT = 44252;
@@ -31,6 +51,8 @@ app.post("/api/test", async (req, res) => {
 		"message": `Request username was ${username}`,
 	});
 });
+
+app.use('/users', userRoutes);	// use the userRoutes module
 
 app.listen(PORT, () => {
 	console.log(`Listening on localhost:${PORT}`);
