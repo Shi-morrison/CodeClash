@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.jsx":
+/***/ "./src/components/Navbar.tsx":
+/*!***********************************!*\
+  !*** ./src/components/Navbar.tsx ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* provided dependency */ var m = __webpack_require__(/*! mithril */ \"./node_modules/mithril/index.js\");\nfunction Navbar() {\n  return {\n    view: function view() {\n      return m(\"main\", null, m(\"h1\", null, \"Hello world\"));\n    }\n  };\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navbar);\n\n//# sourceURL=webpack://frontend/./src/components/Navbar.tsx?");
+
+/***/ }),
+
+/***/ "./src/index.tsx":
 /*!***********************!*\
-  !*** ./src/index.jsx ***!
+  !*** ./src/index.tsx ***!
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ \"./node_modules/mithril/index.js\");\n/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mithril__WEBPACK_IMPORTED_MODULE_0__);\n\nfunction App() {\n  return {\n    view: function view() {\n      return mithril__WEBPACK_IMPORTED_MODULE_0___default()(\"div\", null, mithril__WEBPACK_IMPORTED_MODULE_0___default()(\"h1\", null, \"Hello world\"));\n    }\n  };\n}\nmithril__WEBPACK_IMPORTED_MODULE_0___default().route(document.body, \"/\", {\n  \"/\": App,\n  \"/login\": Login,\n  \"/signup\": SignUp,\n  \"/vsmode\": vsModePage,\n  \"/game\": gamePageContent\n});\n\n//# sourceURL=webpack://frontend/./src/index.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mithril */ \"./node_modules/mithril/index.js\");\n/* harmony import */ var mithril__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mithril__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Navbar */ \"./src/components/Navbar.tsx\");\n\n\nfunction App() {\n  return {\n    view: function view() {\n      return mithril__WEBPACK_IMPORTED_MODULE_0___default()(\"div\", null, mithril__WEBPACK_IMPORTED_MODULE_0___default()(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__[\"default\"], null), mithril__WEBPACK_IMPORTED_MODULE_0___default()(\"h1\", null, \"Hello world\"));\n    }\n  };\n}\nmithril__WEBPACK_IMPORTED_MODULE_0___default().route(document.body, \"/\", {\n  \"/\": App\n});\n\n//# sourceURL=webpack://frontend/./src/index.tsx?");
 
 /***/ }),
 
@@ -354,7 +364,7 @@ eval("// This exists so I'm only saving it once.\n\n\nmodule.exports = {}.hasOwn
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.jsx");
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.tsx");
 /******/ 	
 /******/ })()
 ;

@@ -1,11 +1,12 @@
 import m from "mithril";
-
+import  Login from "./pages/Login";
 
 function App() {
     return {
         view: () => (
             <div>
-                <h1>Hello world</h1>
+                <Login/>
+                <h1 class="text-red-500">Hello world</h1>
             </div>
         ),
     };

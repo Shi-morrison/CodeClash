@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require('webpack')
 
 module.exports = {
 	target: "web",
@@ -25,8 +26,13 @@ module.exports = {
 			  },
 		],
 	},
+	plugins: [
+        new webpack.ProvidePlugin({
+            m: "mithril",
+        }),
+    ],
 	resolve: {
-		extensions: [".tsx", ".ts", ".js", ",jsx"],
+		extensions: [".tsx", ".ts", ".js", ".jsx"],
 	},
 	output: {
 		filename: "[name].js",
