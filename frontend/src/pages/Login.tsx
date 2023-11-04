@@ -6,8 +6,10 @@ function Login() {
     return {
         view: () => (
             <>
+            <div className="flex flex-col">
                 <Title />
                 <InfoAndIDE />
+            </div>
             </>
         ),
     };

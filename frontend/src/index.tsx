@@ -15,7 +15,7 @@ function App() {
         ),
     };
 
-
+}
 m.route(document.body, "/", {
   "/": App,
 });

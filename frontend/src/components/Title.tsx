@@ -2,7 +2,7 @@ function Title() {
     return {
         view: () => (
             <>
-                <div className="fixed top-1/4 left-1/2">
+                <div className="flex justify-center mt-36">
                     <div>CodeClash</div>
                 </div>
             </>
