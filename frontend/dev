@@ -3,5 +3,5 @@
 cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
 
 npx concurrently \
-    "npx postcss styles/style.css -o public/style.css --watch" \
+    "npx postcss-cli styles/style.css -o public/style.css --watch" \
     "npm run dev"
