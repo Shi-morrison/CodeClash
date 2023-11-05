@@ -1,6 +1,8 @@
 import User from '../../db/models/userModel';
 import { Request, Response } from 'express';
 
+
+
 // Log in logic
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
