@@ -24,6 +24,8 @@ connectDB();
 const PORT = 44252;
 
 const app = express();
+// Enable URL-encoded body parsing for POST requests
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
