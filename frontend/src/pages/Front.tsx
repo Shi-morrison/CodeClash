@@ -1,5 +1,4 @@
-import InfoAndIDE from "../components/InfoAndIDE";
-import MainPageInfo from "../components/MainPageInfo";
+import InfoAndIDE from "../components/ButtonAndIDE";
 import Title from "../components/Title"
 
 function Login() {

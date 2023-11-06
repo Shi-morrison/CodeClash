@@ -3,7 +3,7 @@ function Title() {
         view: () => (
             <>
                 <div className="flex justify-center mt-36">
-                    <div>CodeClash</div>
+                    <div className="font-Tetris text-lg">CodeClash⚔️</div>
                 </div>
             </>
         ),

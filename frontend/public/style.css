@@ -494,11 +494,14 @@ video {
 .flex {
   display: flex;
 }
-.w-12 {
-  width: 3rem;
+.hidden {
+  display: none;
 }
-.flex-row {
-  flex-direction: row;
+.h-96 {
+  height: 24rem;
+}
+.w-\[48rem\] {
+  width: 48rem;
 }
 .flex-col {
   flex-direction: column;
@@ -509,3 +512,62 @@ video {
 .justify-center {
   justify-content: center;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.bg-blue-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+.p-4 {
+  padding: 1rem;
+}
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+
+
+
+body{
+    font-family: 'Source Code Pro', monospace;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px; /* Width of the cursor */
+    height: 1.2em; /* Height of the cursor should match the line height */
+    background-color: white; /* Cursor color */
+    margin-left: 5px; /* Space between the cursor and the text */
+    animation: blink-animation  steps(5, start) infinite;
+  }
+  
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+  
+@media (min-width: 768px) {
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+}
+

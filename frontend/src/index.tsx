@@ -1,7 +1,7 @@
 import m from "mithril";
 import { io } from "socket.io-client";
 
-import Login from "./pages/Login";
+import Front from "./pages/Front";
 
 function App() {
     const socket = io("http://localhost:3000");
@@ -10,7 +10,7 @@ function App() {
     return {
         view: () => (
             <div>
-                <Login />
+                <Front />
             </div>
         ),
     };
