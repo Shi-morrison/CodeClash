@@ -1,25 +1,20 @@
 import m from 'mithril';
 import IDE from './IDE';
-import LoginButtons from './LoginButtons';
-import { activateCode } from '../logic/login';
+import LoginButton from './LoginButton';
 
-const InfoAndIDE: m.Component = {
-  oncreate: () => {
-    // Ensure the DOM is fully ready before attempting to bind events
-    requestAnimationFrame(() => {
-      activateCode();
-    });
-  },
-  view: () => (
-    <>
-      <div className="flex flex-col items-center w-120">
-        <div className="flex items-center">
-          <IDE />
-        </div>
-        <LoginButtons />
-      </div>
-    </>
-  ),
+function InfoAndIDE() {
+	return {
+		view: () => (
+			<>
+				<div className="flex flex-col items-center">
+					<div className="flex items-center">
+						<IDE />
+					</div>
+					<LoginButton />
+				</div>
+			</>
+		),
+	};
 };
 
 export default InfoAndIDE;
