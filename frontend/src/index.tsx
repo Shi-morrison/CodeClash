@@ -3,6 +3,11 @@ import { io } from "socket.io-client";
 import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
 
+import * as dotenv from 'dotenv';
+
+
+const CLIENT_ID = "Iv1.96555551712a9807";
+
 function App() {
     const socket = io("http://localhost:3000");
 
@@ -10,7 +15,10 @@ function App() {
     return {
         view: () => (
             <div>
+                <Login />
+      
                 <Front />
+
             </div>
         ),
     };
