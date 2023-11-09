@@ -24,9 +24,9 @@ connectDB();
 const PORT = 44252;
 
 const app = express();
+
 // Enable URL-encoded body parsing for POST requests
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.json());
 
 // tiny example of one API endpoint
@@ -54,7 +54,8 @@ app.post("/api/test", async (req, res) => {
 	});
 });
 
-app.use('/users', userRoutes);	// use the userRoutes module
+// Enable '/users' endpoint and its methods (oAuth and saveUser).
+app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Listening on localhost:${PORT}`);
