@@ -19,7 +19,7 @@ const GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET || '';
 passport.use(new GitHubStrategy({
 	clientID: GITHUB_CLIENT_ID,
 	clientSecret: GITHUB_CLIENT_SECRET,
-	callbackURL: "http://localhost:44252/auth/github/callback"
+	callbackURL: "http://localhost:44251/auth/github/callback"
 },
 	async (accessToken, refreshToken, profile, done) => {
 		try {
@@ -81,7 +81,7 @@ async function connectDB() {
 connectDB();
 
 // This is a randomly chosen port. The API server will listen on localhost:44252 .
-const PORT = 44252;
+const PORT = 44251;
 const app = express();
 
 // Enable URL-encoded body parsing for POST requests
