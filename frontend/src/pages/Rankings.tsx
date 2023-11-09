@@ -30,7 +30,7 @@ function RankingsBar() {
                 </div>
                 <div className="flex flex-row items-center bg-[#1a3522]">
                     <div className="px-4 md:px-8 md:text-[32px]">ELO</div>
-                    <TrophyBronze />
+                    <TrophyGold />
                 </div>
             </div>
         )
