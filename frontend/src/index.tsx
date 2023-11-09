@@ -1,7 +1,7 @@
 import m from "mithril";
 import { io } from "socket.io-client";
-
-import Login from "./pages/Login";
+import Rankings from "./pages/Rankings";
+import Front from "./pages/Front";
 
 import * as dotenv from 'dotenv';
 
@@ -16,13 +16,26 @@ function App() {
         view: () => (
             <div>
                 <Login />
-                <a href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`}>GITHUB LINK</a>
+      
+                <Front />
+
             </div>
         ),
     };
-
 }
 
+function Leaderboard() {
+    return {
+        view: () => (
+            <div>
+                <Rankings />
+            </div>
+        ),
+    };
+}
+
+m.route.prefix = ""; 
 m.route(document.body, "/", {
     "/": App,
+    "/leaderboard": Leaderboard,
 });

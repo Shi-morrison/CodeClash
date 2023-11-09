@@ -1,3 +1,300 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: black;
+  overflow: hidden;
+  /* Hide scrollbars */
+}
+
+@keyframes animate {
+  0% {
+    background-position: left 0px top 10px;
+  }
+
+  40% {
+    background-position: left 800px top 10px;
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px; /* Width of the cursor */
+  height: 1.2em; /* Height of the cursor should match the line height */
+  background-color: white; /* Cursor color */
+  margin-left: 5px; /* Space between the cursor and the text */
+  animation: blink-animation steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+#title {
+  position: relative;
+  margin: 70px auto 50px;
+  font-size: 60px;
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 35px auto;
+}
+
+
+.header-wrap {
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 0;
+  text-align: center;
+  font-size: 25px;
+  font-family: 'Press Start 2P', cursive;
+  transform: perspective(200px) rotateX(10deg);
+  letter-spacing: .1em;
+  user-select: none;
+  text-shadow: 
+    0 -1px 0 #fff, 
+    0 1px 0 #004d40, 
+    0 2px 0 #00483B, 
+    0 3px 0 #004639, 
+    0 4px 0 #004336, 
+    0 5px 0 #004134, 
+    0 6px 0 #003F32, 
+    0 7px 0 #003D30, 
+    0 8px 0 #003A2D, 
+    0 9px 0 #00382B, 
+    0 10px 0 #003528, 
+    0 11px 0 #003225, 
+    0 12px 0 #002F22, 
+    0 13px 0 #002B1E, 
+    0 14px 0 #00281C, 
+    0 15px 0 #001F13, 
+    0 22px 30px rgba(0,0,0, 0.9),
+    0 22px 30px rgba(0, 0, 0, 0.9),
+    0 22px 15px rgba(0, 0, 0, 0.9),
+    0 11px 15px rgba(0, 0, 0, 0.9),
+    0 15px 20px rgba(0, 0, 0, 0.9),
+    0 15px 11px rgba(0, 0, 0, 0.9),
+    0 16px 11px rgba(0, 0, 0, 0.9);
+
+  transition: text-shadow .3s ease .3s, 
+    transform .3s ease .3s,
+    letter-spacing .3s ease .3s;
+
+  &:hover {
+    transition: text-shadow .33s ease, 
+      transform .3s ease,
+      letter-spacing .3s ease;
+    text-shadow: 0 0 0 #004134,
+      0 1px 0 #00483B,
+      0 2px 0 #003528,
+      0 3px 3px rgba(0, 0, 0, 0.9);
+    transform: translate(0px, 15px) 
+      perspective(200px) 
+      rotateX(10deg);
+    letter-spacing: .125em;
+  }
+}
+
+
+
+.retro-btn {
+  text-transform: uppercase;
+  background: 0 0;
+
+  &.lg {
+    .btn {
+      width: 294px;
+      height: 54px;
+      font-size: 17px;
+      line-height: 50px;
+
+      .btn-inner .content-wrapper .btn-content .btn-content-inner::before {
+        padding-top: 0;
+        letter-spacing: .15em;
+      }
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    padding-top: 3px;
+    position: relative;
+    cursor: pointer;
+    font-weight: 600;
+    width: 240px;
+    height: 46px;
+    font-size: 12px;
+    line-height: 24px;
+
+    .btn-inner {
+
+      .content-wrapper {
+        position: relative;
+        font-family: inherit;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        height: calc(100% - 3px);
+
+        &:after,
+        &::before,
+        & .btn-content:after,
+        & .btn-content::before,
+        & .btn-content .btn-content-inner::before {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+
+        &::before {
+          background-image: initial;
+          background-color: #004d40;
+          content: " ";
+          border-radius: 3px;
+          top: auto;
+          bottom: -3px;
+          z-index: 1;
+        }
+
+        .btn-content {
+          background-image: initial;
+          background-color: #26a69a;
+          color: #ebf1f8;
+
+          position: relative;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex: 1;
+          align-items: center;
+          justify-content: center;
+          border-radius: 3px;
+          text-indent: 0;
+          z-index: 3;
+          overflow: hidden;
+          padding: 0 16px;         
+        }
+      }
+    }
+  }
+}
+
+
+
+#title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  letter-spacing: 10px;
+  margin-top: -60px;
+  padding-left: 10px;
+
+  & span {
+    background: linear-gradient(white, #38495a);
+    background-clip: text;
+  }
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bar{
+  width: calc(60%); /* Decrease total width by 40px */
+  margin: auto;
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  border-left: 3px solid #3d6242;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  cursor: pointer;
+  box-shadow: 0 0 8px #000; 
+  transition: .3s filter,.3s box-shadow;
+}
+
+.bar:hover{
+  filter: brightness(1.8) drop-shadow(0px 0px 8px #FFF6);
+}
+
+.barRank{
+  position: absolute;
+    left: 0;
+    top: 0;
+    width: 2.1em;
+    background-color: #212739;
+    border-radius: 2px 0 0 2px;
+    font-size: 3.5em;
+    height: 1em;
+    padding-top: 0.15em;
+    padding-right: 0.08em;
+    text-align: right;
+    color: #fff;
+    text-shadow: 0 0.04em #fff4, 0 0 8px #fff8;
+}
+
+.glow{
+  text-shadow: 0 0.04em #fff4, 0 0 8px #fff8;
+}
+
+.navbar{
+  background: linear-gradient(to bottom,#334534 0,#212f22 100%);
+  border-bottom: 2px solid #3d6f41;
+}
+
+.profile{
+  left: 0.2em;
+  right: 3.2em;
+  bottom: 0.2em;
+  height: 3.5em;
+  width: 15em;
+  background: linear-gradient(to bottom,#060606AA 0,#060606DD 100%);
+  border: 2px solid #060606EE;
+  border-top: none;
+  box-shadow: 0 0 8px #0008;
+  cursor: pointer;
+  border-radius: 0 0 3px 3px;
+  transform: translateY(0);
+  transition: .3s transform;
+}
+
+.profile:hover{
+  transform: translateY(0.1em);
+}
+
+.rank{
+  color: #f44;
+    background: #4006;
+    text-shadow: 0 0 4px #f44A;
+    font-family: HUN;
+    font-weight: 500;
+    font-size: 1.1em;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.img{
+  max-height: 4em;
+  width: auto;
+}
