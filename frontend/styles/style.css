@@ -255,5 +255,89 @@ body {
     text-shadow: 0 0.04em #fff4, 0 0 8px #fff8;
 }
 
+.glow{
+  text-shadow: 0 0.04em #fff4, 0 0 8px #fff8;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 230%;
+}
+a:hover {
+  color: var(--hotmag);
+  text-decoration: none;
+}
+.gradient {
+  background: linear-gradient(90deg, rgba(255, 23, 228, 1) 0%, rgba(134, 251, 251, 1) 100%);
+  height: 2px;
+}
+nav {
+  font-size: 80%;
+  padding: 4rem 1rem;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+nav li:first-child {
+  flex-basis: 100%;
+  text-align: center;
+}
+nav [class*="fa-"] {
+  font-size: 150%;
+  color: var(--aqua);
+}
+nav h1 [class*="fa-"] {
+  font-size: 100%;
+  color: var(--aqua);
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+nav a:hover,
+nav [class*="fa-"]:hover {
+  color: var(--magenta);
+}
+.button {
+  background-color: var(--magenta);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-family: var(--mono);
+}
+.button:hover {
+  color: white;
+  background-color: var(--hotmag);
+}
+@media (min-width: 850px) {
+  nav {
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  nav li:first-child {
+      flex-basis: auto;
+      text-align: left;
+      margin-right: auto;
+  }
+}
+canvas {
+  position: fixed;
+  top: 0;
+  left: inherit;
+  right: inherit;
+  bottom: 0;
+  z-index: -1;
+}
+
 
 

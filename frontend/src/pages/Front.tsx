@@ -1,4 +1,4 @@
-import InfoAndIDE from "../components/ButtonAndIDE";
+import ButtonAndIDE from "../components/ButtonAndIDE";
 import Title from "../components/Title"
 import 'particles.js/particles';
 
@@ -23,7 +23,7 @@ function Login() {
                 <Particles />
                 <div className="content-container flex flex-col">
                     <Title />
-                    <InfoAndIDE />
+                    <ButtonAndIDE />
                 </div>
             </div>
         ),
