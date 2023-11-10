@@ -485,6 +485,9 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.visible {
+  visibility: visible;
+}
 .invisible {
   visibility: hidden;
 }
@@ -497,23 +500,25 @@ video {
 .relative {
   position: relative;
 }
+.right-2 {
+  right: 0.5rem;
+}
 .right-4 {
   right: 1rem;
+}
+.top-2 {
+  top: 0.5rem;
 }
 .top-4 {
   top: 1rem;
 }
-.right-0 {
-  right: 0px;
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
-.top-0 {
-  top: 0px;
-}
-.right-2 {
-  right: 0.5rem;
-}
-.top-2 {
-  top: 0.5rem;
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .mb-2 {
   margin-bottom: 0.5rem;
@@ -533,14 +538,32 @@ video {
 .mt-36 {
   margin-top: 9rem;
 }
+.mt-4 {
+  margin-top: 1rem;
+}
 .mt-8 {
   margin-top: 2rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-12 {
+  margin-top: 3rem;
 }
 .block {
   display: block;
 }
 .flex {
   display: flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
 }
 .h-3 {
   height: 0.75rem;
@@ -566,6 +589,9 @@ video {
 .cursor-pointer {
   cursor: pointer;
 }
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .flex-row {
   flex-direction: row;
 }
@@ -580,6 +606,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -971,7 +1000,7 @@ body {
   transition: .3s transform;
 }
 
-.profile:hover{
+.profileNavbar:hover{
   transform: translateY(0.1em);
 }
 
@@ -1034,6 +1063,40 @@ body {
   box-sizing: border-box;
 }
 
+.mobileProfile{
+  width: calc(70%);
+  height: 70vh;
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  border-left: 3px solid #3d6242;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.mobileProfileInfo{
+  width: 60vw;
+  height: 30vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.mobileAchievements{
+  width: 60vw;
+  height: 25vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
 @media (min-width: 640px) {
 
   .sm\:ml-4 {
@@ -1053,6 +1116,18 @@ body {
 
   .md\:ml-8 {
     margin-left: 2rem;
+  }
+
+  .md\:mt-24 {
+    margin-top: 6rem;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:flex-row {
@@ -1094,3 +1169,4 @@ body {
     padding-right: 1rem;
   }
 }
+

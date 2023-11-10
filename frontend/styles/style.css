@@ -279,7 +279,7 @@ body {
   transition: .3s transform;
 }
 
-.profile:hover{
+.profileNavbar:hover{
   transform: translateY(0.1em);
 }
 
@@ -341,3 +341,38 @@ body {
   box-shadow: 0 0 48px #0002;
   box-sizing: border-box;
 }
+
+.mobileProfile{
+  width: calc(70%);
+  height: 70vh;
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  border-left: 3px solid #3d6242;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.mobileProfileInfo{
+  width: 60vw;
+  height: 30vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.mobileAchievements{
+  width: 60vw;
+  height: 25vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+

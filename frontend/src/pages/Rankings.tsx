@@ -2,11 +2,12 @@ import TrophyGold from "../components/TrophyGold";
 import TrophySilver from "../components/TrophySilver";
 import TrophyBronze from "../components/TrophyBronze";
 import Navbar from "../components/Navbar";
+import MobileBar from "../components/Mobilebar";
 
 function RankingsTitle() {
     return {
         view: () => (
-            <div className="flex justify-center mt-24">
+            <div className="flex justify-center md:mt-24">
                 <div class="wrapper">
                     <div class="header-wrap text-6xl text-[#6ec3c1]">
                         <h1>Leaderboard</h1>
@@ -42,6 +43,9 @@ function Rankings() {
     return {
         view: () => (
             <div>
+                <div className="block md:hidden">
+                    <MobileBar />
+                </div>
                 <Navbar />
                 <RankingsTitle />
                 <div className="flex flex-col">

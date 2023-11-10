@@ -5,7 +5,7 @@ function Profile() {
     return {
         view: () => (
             <>
-                <div className="flex justify-center mt-24">
+                <div className="flex justify-center mt-24 glow">
                     <div className="text-white profile flex flex-row relative">
                         <div className="pt-12 pl-12 flex flex-col relative">
                             <img className="imgProfile rounded" src="https://tetr.io/res/avatar.png"/>
