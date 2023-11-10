@@ -2,7 +2,7 @@ import m from "mithril";
 import { io } from "socket.io-client";
 import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
-
+import Modal from "./pages/Profile"
 import * as dotenv from 'dotenv';
 
 
@@ -15,10 +15,7 @@ function App() {
     return {
         view: () => (
             <div>
-                <Login />
-      
                 <Front />
-
             </div>
         ),
     };
@@ -34,8 +31,19 @@ function Leaderboard() {
     };
 }
 
+function Profile() {
+    return {
+        view: () => (
+            <div>
+                <Modal />
+            </div>
+        ),
+    };
+}
+
 m.route.prefix = ""; 
 m.route(document.body, "/", {
     "/": App,
     "/leaderboard": Leaderboard,
+    "/profile": Profile,
 });

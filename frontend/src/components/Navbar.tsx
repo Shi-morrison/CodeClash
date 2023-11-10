@@ -10,8 +10,8 @@ function Navbar(){
                     </div>
                     <div className="text-[32px]">Leaderboard</div>
                 </div>
-                <div className="flex flex-row profile mb-2 mt-1">
-                    <div className="flex flex-col profile">
+                <div className="flex flex-row profileNavbar mb-2 mt-1">
+                    <div className="flex flex-col profileNavbar">
                         <div>Profile</div>
                         <div className="rank">Rank</div>
                     </div>

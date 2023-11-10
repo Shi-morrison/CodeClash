@@ -503,6 +503,18 @@ video {
 .top-4 {
   top: 1rem;
 }
+.right-0 {
+  right: 0px;
+}
+.top-0 {
+  top: 0px;
+}
+.right-2 {
+  right: 0.5rem;
+}
+.top-2 {
+  top: 0.5rem;
+}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -520,6 +532,9 @@ video {
 }
 .mt-36 {
   margin-top: 9rem;
+}
+.mt-8 {
+  margin-top: 2rem;
 }
 .block {
   display: block;
@@ -539,8 +554,14 @@ video {
 .w-3 {
   width: 0.75rem;
 }
+.w-\[30vw\] {
+  width: 30vw;
+}
 .w-\[48rem\] {
   width: 48rem;
+}
+.w-\[50vw\] {
+  width: 50vw;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -613,8 +634,31 @@ video {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.px-\[1px\] {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.pl-12 {
+  padding-left: 3rem;
+}
 .pl-4 {
   padding-left: 1rem;
+}
+.pr-\[1px\] {
+  padding-right: 1px;
+}
+.pt-12 {
+  padding-top: 3rem;
+}
+.pt-2 {
+  padding-top: 0.5rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
 }
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -623,8 +667,14 @@ video {
   font-size: 3.75rem;
   line-height: 1;
 }
+.text-\[24px\] {
+  font-size: 24px;
+}
 .text-\[32px\] {
   font-size: 32px;
+}
+.text-\[36px\] {
+  font-size: 36px;
 }
 .text-lg {
   font-size: 1.125rem;
@@ -864,7 +914,7 @@ body {
 }
 
 .bar{
-  width: calc(60%); /* Decrease total width by 40px */
+  width: calc(60%);
   margin: auto;
   background-color: #243e25;
   border-top: 3px solid #45794f;
@@ -905,7 +955,7 @@ body {
   border-bottom: 2px solid #3d6f41;
 }
 
-.profile{
+.profileNavbar{
   left: 0.2em;
   right: 3.2em;
   bottom: 0.2em;
@@ -929,7 +979,6 @@ body {
   color: #f44;
     background: #4006;
     text-shadow: 0 0 4px #f44A;
-    font-family: HUN;
     font-weight: 500;
     font-size: 1.1em;
     border-radius: 3px;
@@ -939,6 +988,57 @@ body {
 .img{
   max-height: 4em;
   width: auto;
+}
+
+.imgProfile{
+  max-height: 12em;
+  width: auto;
+}
+
+
+.profile{
+  width: calc(60%);
+  height: 60vh;
+  background-color: #243e25;
+  border-top: 3px solid #45794f;
+  border-left: 3px solid #3d6242;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.flagSize {
+  width: 25px;  /* Adjust the width as needed */
+  height: auto; /* This will maintain the aspect ratio */
+}
+
+.profileInfo{
+  width: auto;
+  height: 25vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+.achievements{
+  height: 7vh;
+  background-color: #1a3522;
+  border-top: 3px solid #45794f;
+  border-bottom: 3px solid #162419;
+  border-right: 3px solid #1d3220;
+  box-shadow: 0 0 48px #0002;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+
+  .sm\:ml-4 {
+    margin-left: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -951,6 +1051,10 @@ body {
     margin-bottom: 0px;
   }
 
+  .md\:ml-8 {
+    margin-left: 2rem;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -959,6 +1063,11 @@ body {
     --tw-space-x-reverse: 0;
     margin-right: calc(1rem * var(--tw-space-x-reverse));
     margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .md\:px-8 {
@@ -975,5 +1084,13 @@ body {
 
   .md\:text-\[32px\] {
     font-size: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  .lg\:px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
