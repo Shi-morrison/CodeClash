@@ -10,7 +10,9 @@ function MobileBar(show = true) {
                 <div>
                     <div className="flex flex-row profileNavbar mb-2 mt-2">
                         <div className="flex flex-col profileNavbar">
-                            <div>Profile</div>
+                            <div className="flex justify-center">
+                                <div>Profile</div>  
+                            </div>
                             <div className="rank">Rank</div>
                         </div>
                         <div className="flex items-center">
