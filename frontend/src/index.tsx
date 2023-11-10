@@ -4,6 +4,7 @@ import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
 import Modal from "./pages/Profile"
 import MobileModal from "./pages/MobileProfile"
+import MainMenuPage from './pages/MainMenuPage';
 import * as dotenv from 'dotenv';
 
 
@@ -52,10 +53,21 @@ function MobileProfile() {
     };
 }
 
+function MainMenu() {
+    return {
+        view: () => (
+            <div>
+                <MainMenuPage />
+            </div>
+        ),
+    };
+}
+
 m.route.prefix = ""; 
 m.route(document.body, "/", {
     "/": App,
     "/leaderboard": Leaderboard,
     "/profile": Profile,
     "/mobileprof": MobileProfile,
+    "/mainmenu": MainMenu
 });
