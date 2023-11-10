@@ -7,7 +7,7 @@ function InfoAndIDE() {
 		view: () => (
 			<>
 				<div className="flex flex-col items-center">
-					<div className="flex items-center">
+					<div className="invisible md:visible flex items-center">
 						<IDE />
 					</div>
 					<LoginButton />
