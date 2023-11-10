@@ -51,7 +51,7 @@ passport.use(new GitHubStrategy({
 	}
 ));
 
-// serialize user into data base
+// Serialize user into data base
 passport.serializeUser((user, done) => {
 	done(null, user);
 });
@@ -80,7 +80,7 @@ async function connectDB() {
 }
 connectDB();
 
-// This is a randomly chosen port. The API server will listen on localhost:44252 .
+// This is a randomly chosen port. The API server will listen on localhost:44251 .
 const PORT = 44251;
 const app = express();
 
@@ -105,7 +105,7 @@ app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback',
 	passport.authenticate('github', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('http://localhost:8080/'); // Redirect to the home page
+		res.redirect('http://localhost:8080/leaderboard'); // Redirect to the home page
 	}
 );
 
