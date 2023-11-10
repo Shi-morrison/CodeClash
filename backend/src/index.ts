@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import * as dotenv from 'dotenv';
 import GitHubStrategy from 'passport-github'
 import User from './db/models/userModel';
+import cors from 'cors'
 
 
 // dotenv.config() loads environment variables from a .env file into process.env
@@ -84,9 +85,17 @@ connectDB();
 const PORT = 44251;
 const app = express();
 
+const corsOptions = {
+	origin: 'http://localhost:8080',
+	credentials: true,
+}
+app.use(cors(corsOptions));
+
+
 // Enable URL-encoded body parsing for POST requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Create passport session , with session secret and mongoDb session data
 app.use(session({
@@ -99,7 +108,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// Paths for Oauth web flow
 app.get('/auth/github', passport.authenticate('github'));
 
 app.get('/auth/github/callback',
@@ -109,9 +118,9 @@ app.get('/auth/github/callback',
 	}
 );
 
+// Enable '/users' endpoint and its methods.
+app.use('/api', userRoutes);
 
-// Enable '/users' endpoint and its methods (oAuth and saveUser).
-app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Listening on localhost:${PORT}`);
