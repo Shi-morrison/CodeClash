@@ -2,10 +2,16 @@ import m from "mithril";
 import { io } from "socket.io-client";
 import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
+
+
+
+
+
 import Modal from "./pages/Profile"
 import MobileModal from "./pages/MobileProfile"
 import MainMenuPage from './pages/MainMenuPage';
 import * as dotenv from 'dotenv';
+
 
 
 const CLIENT_ID = "Iv1.96555551712a9807";
@@ -32,6 +38,9 @@ function Leaderboard() {
         ),
     };
 }
+
+
+m.route.prefix = "";
 
 function Profile() {
     return {
@@ -64,6 +73,7 @@ function MainMenu() {
 }
 
 m.route.prefix = ""; 
+
 m.route(document.body, "/", {
     "/": App,
     "/leaderboard": Leaderboard,

@@ -1,5 +1,5 @@
 import express from "express";
-import userRoutes from './api/routes/userRoutes';	// import the userRoutes module
+import userRoutes from './api/routes/userRoutes';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import * as dotenv from 'dotenv';
 import GitHubStrategy from 'passport-github'
 import User from './db/models/userModel';
+import cors from 'cors'
 
 
 // dotenv.config() loads environment variables from a .env file into process.env
@@ -51,7 +52,7 @@ passport.use(new GitHubStrategy({
 	}
 ));
 
-// serialize user into data base
+// Serialize user into data base
 passport.serializeUser((user, done) => {
 	done(null, user);
 });
@@ -64,7 +65,6 @@ passport.deserializeUser(async (githubId, done) => {
 		done(error);
 	}
 });
-
 
 
 // Connect to the database
@@ -80,13 +80,22 @@ async function connectDB() {
 }
 connectDB();
 
-// This is a randomly chosen port. The API server will listen on localhost:44252 .
+// This is a randomly chosen port. The API server will listen on localhost:44251 .
 const PORT = 44251;
 const app = express();
+
+// Cors policy access
+const corsOptions = {
+	origin: 'http://localhost:8080',
+	credentials: true,
+}
+app.use(cors(corsOptions));
+
 
 // Enable URL-encoded body parsing for POST requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Create passport session , with session secret and mongoDb session data
 app.use(session({
@@ -99,19 +108,20 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// Paths for Oauth web flow
 app.get('/auth/github', passport.authenticate('github'));
 
 app.get('/auth/github/callback',
 	passport.authenticate('github', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('http://localhost:8080/'); // Redirect to the home page
+		res.redirect('http://localhost:8080/leaderboard'); // Redirect to the home page
 	}
 );
 
+// Enable '/api' endpoint and its methods.
+app.use('/api', userRoutes);
 
-// Enable '/users' endpoint and its methods (oAuth and saveUser).
-app.use('/users', userRoutes);
+
 
 app.listen(PORT, () => {
 	console.log(`Listening on localhost:${PORT}`);
