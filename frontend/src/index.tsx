@@ -2,11 +2,7 @@ import m from "mithril";
 import { io } from "socket.io-client";
 import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
-
-
-
-
-
+import GameLayout from "./pages/GameInstance";
 import Modal from "./pages/Profile"
 import MobileModal from "./pages/MobileProfile"
 import MainMenuPage from './pages/MainMenuPage';
@@ -39,6 +35,23 @@ function Leaderboard() {
     };
 }
 
+function GamePage() {
+    return {
+        view: () => (
+            <div>
+                <GameLayout />
+            </div>
+        ),
+    };
+}
+
+function TestingOutModalLooks() {
+    return {
+        view: () => (
+            <WinModal />
+        )
+    }
+}
 
 m.route.prefix = "";
 
@@ -79,5 +92,9 @@ m.route(document.body, "/", {
     "/leaderboard": Leaderboard,
     "/profile": Profile,
     "/mobileprof": MobileProfile,
-    "/mainmenu": MainMenu
+    "/mainmenu": MainMenu,
+    "/gameinstance": GamePage,
+    "/test" : TestingOutModalLooks,
 });
+
+export default App;
