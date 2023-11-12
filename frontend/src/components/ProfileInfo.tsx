@@ -3,7 +3,7 @@ function ProfileInfo(){
     return {
         view: () => (
             <div className="flex flex-row w-[30vw]">
-                <div className="flex flex-col">
+                <div className=" pl-2 flex flex-col">
                     <div className={profileInfo}>Games Played</div>
                     <div className="px-[1px] md:px-4 lg:px-4">Number</div>
                 </div>

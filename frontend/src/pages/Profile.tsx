@@ -16,7 +16,7 @@ function Profile() {
                                         <Flag />
                                     </div>
                                     <div className= "text-[24px]">Elo/Rank</div>
-                                    <div className="pt-6">
+                                    <div className="pt-6 lg:mt-6">
                                         <div>Achievements</div>
                                         <div className="achievements absolute w-[50vw]">
                                             Achievement
