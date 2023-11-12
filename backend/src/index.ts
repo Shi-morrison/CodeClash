@@ -39,6 +39,7 @@ passport.use(new GitHubStrategy({
 					email: email,
 					wins: 0,
 					losses: 0,
+					rank: 'bronze',
 					gamesPlayed: 0,
 					elo: 0
 				});

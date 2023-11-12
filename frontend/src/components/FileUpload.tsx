@@ -36,6 +36,9 @@ async function handleUpload(userId: string) {
     }
 }
 
+
+let fileInput;
+
 const FileUpload: m.Component<FileUploadProps> = {
     view({ attrs }) {
         return m('div',
