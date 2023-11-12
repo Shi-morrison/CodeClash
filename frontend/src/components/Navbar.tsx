@@ -1,6 +1,7 @@
 import BackArrow from "./BackArrow";
 import axios from 'axios';
 import m from 'mithril';
+import FileUpload from '../components/FileUpload'
 
 
 
@@ -8,7 +9,9 @@ function Navbar() {
 
     let userData = {
         username: '...Loading',
-        rank: '..Loading'
+        rank: '..Loading',
+        profilePicFilename: '',
+        ID: ''
     };
 
     axios.get('http://localhost:44251/api/current_user', {
@@ -16,10 +19,13 @@ function Navbar() {
     })
         .then(response => {
             const data = response.data;
+            console.log("data" + data.user);
             if (data.user) {
                 userData = {
                     username: data.user.username,
-                    rank: data.user.rank
+                    rank: data.user.rank,
+                    profilePicFilename: data.user.profilePicture,
+                    ID: data.user._id
                 };
 
                 m.redraw();
@@ -33,7 +39,9 @@ function Navbar() {
             console.error('Error:', error);
         });
 
-
+    // const profilePicUrl = userData.profilePicFilename
+    //     ? `${profile}`
+    //     : 'https://tetr.io/res/avatar.png';
     return {
         view: () => (
             <div className="invisible md:visible text-white flex justify-between px-16 navbar">
@@ -49,7 +57,8 @@ function Navbar() {
                         <div className="rank">{userData.rank}</div>
                     </div>
                     <div className="flex items-center">
-                        <img className="img rounded" src="https://tetr.io/res/avatar.png" />
+                        <img className="img rounded" src={userData.profilePicFilename} />
+                        <FileUpload userId={userData.ID} />
                     </div>
                 </div>
             </div>

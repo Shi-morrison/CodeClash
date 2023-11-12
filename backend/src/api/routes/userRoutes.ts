@@ -1,5 +1,7 @@
 import express from 'express';
 import * as userController from '../controllers/userController';
+import * as uploadController from '../controllers/fileUploadController';
+
 
 const router = express.Router();
 
@@ -8,5 +10,7 @@ const router = express.Router();
 router.post('/game', userController.updateStats);
 
 router.get('/current_user', userController.getUser)
+
+router.post('/upload/:userId', uploadController.uploadFile);
 
 export default router;

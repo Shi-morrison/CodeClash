@@ -1,5 +1,5 @@
 import express from "express";
-import userRoutes from './api/routes/userRoutes';	// import the userRoutes module
+import userRoutes from './api/routes/userRoutes';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import session from 'express-session';
@@ -67,7 +67,6 @@ passport.deserializeUser(async (githubId, done) => {
 });
 
 
-
 // Connect to the database
 async function connectDB() {
 	try {
@@ -85,6 +84,7 @@ connectDB();
 const PORT = 44251;
 const app = express();
 
+// Cors policy access
 const corsOptions = {
 	origin: 'http://localhost:8080',
 	credentials: true,
@@ -118,8 +118,9 @@ app.get('/auth/github/callback',
 	}
 );
 
-// Enable '/users' endpoint and its methods.
+// Enable '/api' endpoint and its methods.
 app.use('/api', userRoutes);
+
 
 
 app.listen(PORT, () => {
