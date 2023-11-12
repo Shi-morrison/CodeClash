@@ -693,6 +693,9 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.italic {
+  font-style: italic;
+}
 .text-\[\#6ec3c1\] {
   --tw-text-opacity: 1;
   color: rgb(110 195 193 / var(--tw-text-opacity));
