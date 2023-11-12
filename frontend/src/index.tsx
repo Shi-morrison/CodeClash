@@ -7,6 +7,13 @@ import Front from "./pages/Front";
 
 
 
+import Modal from "./pages/Profile"
+import MobileModal from "./pages/MobileProfile"
+import MainMenuPage from './pages/MainMenuPage';
+import * as dotenv from 'dotenv';
+
+
+
 const CLIENT_ID = "Iv1.96555551712a9807";
 
 function App() {
@@ -32,8 +39,45 @@ function Leaderboard() {
     };
 }
 
+
 m.route.prefix = "";
+
+function Profile() {
+    return {
+        view: () => (
+            <div>
+                <Modal />
+            </div>
+        ),
+    };
+}
+
+function MobileProfile() {
+    return {
+        view: () => (
+            <div>
+                <MobileModal />
+            </div>
+        ),
+    };
+}
+
+function MainMenu() {
+    return {
+        view: () => (
+            <div>
+                <MainMenuPage />
+            </div>
+        ),
+    };
+}
+
+m.route.prefix = ""; 
+
 m.route(document.body, "/", {
     "/": App,
     "/leaderboard": Leaderboard,
+    "/profile": Profile,
+    "/mobileprof": MobileProfile,
+    "/mainmenu": MainMenu
 });

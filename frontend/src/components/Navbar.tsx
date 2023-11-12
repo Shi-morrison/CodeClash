@@ -51,10 +51,19 @@ function Navbar() {
                     </div>
                     <div className="text-[32px]">Leaderboard</div>
                 </div>
+
                 <div className="flex flex-row profile mb-2 mt-1">
                     <div className="flex flex-col profile">
                         <div>{userData.username}</div>
                         <div className="rank">{userData.rank}</div>
+
+                <div className="flex flex-row profileNavbar mb-2 mt-1">
+                    <div className="flex flex-col profileNavbar">
+                        <div className="flex justify-center">
+                            <div>Profile</div>  
+                        </div>
+                        <div className="rank">Rank</div>
+
                     </div>
                     <div className="flex items-center">
                         <img className="img rounded" src={userData.profilePicFilename} />
