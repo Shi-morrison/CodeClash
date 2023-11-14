@@ -31,6 +31,7 @@ async function handleUpload(userId: string) {
             withCredentials: true
         });
         alert('Profile picture uploaded successfully');
+        m.redraw();
     } catch (error) {
         console.error('Upload error:', error);
     }
