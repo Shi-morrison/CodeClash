@@ -13,4 +13,6 @@ router.get('/current_user', userController.getUser)
 
 router.post('/upload/:userId', uploadController.uploadFile);
 
+router.get('/leaderboard', userController.getLeaderboard)
+
 export default router;

@@ -2,6 +2,7 @@ import m from "mithril";
 import { io } from "socket.io-client";
 import Rankings from "./pages/Rankings";
 import Front from "./pages/Front";
+import axios from 'axios';
 
 
 
@@ -72,7 +73,18 @@ function MainMenu() {
     };
 }
 
-m.route.prefix = ""; 
+// Setup Axios interceptor
+axios.interceptors.response.use(
+    response => response, // On success, return the response
+    error => {
+        if (error.response && error.response.status === 401) {
+            m.route.set('/login'); // Redirect to login page on 401 Unauthorized
+        }
+        return Promise.reject(error);
+    }
+);
+
+m.route.prefix = "";
 
 m.route(document.body, "/", {
     "/": App,
