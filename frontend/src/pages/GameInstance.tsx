@@ -1,8 +1,6 @@
 import m from "mithril";
 import stream from "mithril/stream";
 import * as monaco from 'monaco-editor';
-import LikeButton from "../components/Like";
-import DislikeButton from "../components/Dislike";
 import WinModal from "../components/GameWonModal";
 
 function DiffAndRating() {
@@ -47,15 +45,46 @@ function ProblemTxt() {
                 <div class="problemText p-5 text-[#d4e0fa]">
                     <p class="text-l"> {twoSum}</p>
                 </div>
-                <div tabindex="0" class="collapse bg-base-200"> 
-                    <div class="collapse-title text-xl font-medium problemText text-yellow-100">
+                
+                <div class ="exampleDiv problemText text-[#6ec3c1] space-y-4">
+                    <div class="example1 p-4 shadow-lg rounded-lg bg-gray-600">
+                        <h3 class="font-bold">Example 1:</h3>
+                        <div class="border-l-4 border-blue-500 pl-4 ml-4">
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Input:</span> nums = [2,7,11,15], target = 9</p>
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Output:</span> [0,1]</p>
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Explanation:</span> Because nums[0] + nums[1] == 9, we return [0, 1].</p>
+
+                        </div>
+                    </div>
+
+                    <div class="example2 problemText text-[#6ec3c1] p-4 shadow-lg rounded-lg bg-gray-600">
+                        <h3 class="font-bold">Example 2:</h3>
+                        <div class="border-l-4 border-blue-500 pl-4 ml-4">
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Input:</span> nums = [3,2,4], target = 6</p>
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Output:</span> [1,2]</p>
+
+                        </div>
+                    </div>
+
+                    <div class="example3 problemText p-4 shadow-lg rounded-lg bg-gray-600">
+                        <h3 class="font-bold">Example 3:</h3>
+                        <div class="border-l-4 border-blue-500 pl-4 ml-4">
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Input:</span> nums = [3,3], target = 6</p>
+                            <p class="text-gray-400"><span class="font-bold text-gray-300">Output:</span> [0,1]</p>
+
+                        </div>
+                    </div>
+                </div>
+                {/* HELP ME HERE IDK WHY THE COLLAPSE CLASS HIDES THE CONTENT OF THE HINTS WHHYYYYYY */}
+                <div tabindex="0" class=" bg-base-200 p-3"> 
+                    <div class="collapse-title text-xl font-medium  text-yellow-100 problemText">
                         Hint 1
                     </div>
                     <div class="collapse-content"> 
-                        <p class="problemText text-yellow-100">try to find a solution of O(n) time</p>
+                        <p tabindex="0" class="problemText text-yellow-100">try to find a solution of O(n) time</p>
                     </div>
                 </div>
-                <div tabindex="0" class="collapse bg-base-200"> 
+                <div tabindex="0" class=" bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium problemText text-yellow-100">
                         Hint 2
                     </div>
@@ -63,7 +92,7 @@ function ProblemTxt() {
                         <p class="problemText text-yellow-100">Keep tracked of numbers that you visited in the array</p>
                     </div>
                 </div>
-                <div tabindex="0" class="collapse bg-base-200"> 
+                <div tabindex="0" class=" bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium problemText text-yellow-100">
                         Hint 3
                     </div>
@@ -88,7 +117,7 @@ function PowerUpList() {
     function handlePowerUpClick(clickedPowerUp:any) {
         powerUps(powerUps().filter((powerUp) => powerUp.id !== clickedPowerUp.id));
         // Implement logic for the effect of the power-up here
-      }
+    }
     return {
         view: () => (
             <>
@@ -122,36 +151,39 @@ function GameLayout() {
             <>
                 
                 <div class="bg-black-100 w-full h-full p-4 flex flex-col items-center justify-center">
-                    <div class="grid grid-cols-3 gap-4">
-                        {/* Player's Editor */}
-                        <div class="col-span-1">
-                            <h1 class="problemText text-blue-200">Your Code</h1>
-                            <Editor editorClass="overflow-hidden rounded-lg" />
-                        </div>
-
-                        {/* Problem Statement */}
+                    <div class="grid grid-cols-2 gap-4">
+                        {/* Problem Statement  and explanation should be on the left side*/}
                         <div class="col-span-1">
                             <ProblemTxt />
                         </div>
 
-                        {/* Opponent's Editor */}
+                        {/* Player's Editor  need to move this to the right side of the screen*/}
                         <div class="col-span-1">
-                            <h1 class="problemText text-red-500">Your Opponents Code</h1>
-                            <div class="blur-sm">
-                                <Editor editorClass="overflow-hidden rounded-lg filter blur-lg" />
-                            </div>
+                            <h1 class="problemText text-blue-200">Your Code</h1>
+                            <Editor editorClass=" rounded-lg" />
+                        {/* Opponent's Editor , should be a child of the player editor i guess*/}
+                            {/* <div class="col-span-1">
+                                <h1 class="problemText text-red-500">Your Opponents Code</h1>
+                                <div class="blur-sm">
+                                    <OpponentEditor editorClass=" rounded-lg filter blur-lg" />
+                                </div>
+                            </div> */}
                         </div>
+                        
                     </div>
                 </div>
-                <PowerUpList />
-                <div class="flex justify-between" id="play_multi" data-hover="hover" data-hit="hit1">
-                    <div class="mr-5 p-5 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700">
-                        <img src="/RunCode.svg" /> 
-                    </div>
-                    <div class="ml-5 p-5 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700">
-                        <img src ='/SubmitCode.svg' onclick={openGameWonModal} />
-                    </div>
+                <div class="bottomControls fixed bottom-0 w-full p-5 bg-black-100 flex justify-between items-center">
                     
+                    <div class="flex flex-grow justify-end space-x-2">
+                        <PowerUpList />
+                        <div class="p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700">
+                            <img src="/RunCode.svg" class="w-30 h-8" /> 
+                        </div>
+                        <div class="p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700">
+                            <img src='/SubmitCode.svg' class="w-30 h-8" onclick={openGameWonModal} />
+                        </div>
+                    </div>
+
                 </div>
                 {/* Conditionally render the modal */}
                 <div class="centerChris">
@@ -187,7 +219,42 @@ function Editor(){ //this uses the monaco npm package to get vscode editor in a 
         },
         view: () => (
             <>
-                <div id = "container" style={{height: '600px', width:'550px', border: '1px solid #ccc'}}></div>
+                <div id = "container" style={{height: '800px', width:'950px', border: '1px solid #ccc', }}></div>
+                
+                <div id="opponentEditorContainer" style={{ position: 'absolute', bottom: '81px', right: '10px', height: '177px', width: '188px', border: '1px solid #ccc', zIndex: 10 }}>
+                    <h1 class="problemText text-red-500 text-xs text-center">Your Opponents Code</h1>
+                    <div class="blur-sm">
+                        
+                        <OpponentEditor  />
+                    </div>
+                </div>
+            </>
+        )
+    }
+}
+//basically same but smaller
+function OpponentEditor(){ //this uses the monaco npm package to get vscode editor in a window basically. 
+    let langVar = "javascript" //this is a varible that we can change to change the language they want to program in
+    let editor: monaco.editor.IStandaloneCodeEditor;
+    let editorRef: HTMLElement;
+    return {
+        oncreate: (vnode:any) => {
+            editorRef= vnode.dom as HTMLElement;
+            editor = monaco.editor.create(editorRef, {
+                value: "// Type your code here",
+                language: langVar,
+                theme: "vs-dark",
+                automaticLayout: true,
+            });
+        },
+        onremove: () => {
+            if(editor) {
+                editor.dispose();
+            }
+        },
+        view: () => (
+            <>
+                <div id = "container" style={{height: '145px', width:'185px', border: '1px solid #ccc'}}></div>
             </>
         )
     }
