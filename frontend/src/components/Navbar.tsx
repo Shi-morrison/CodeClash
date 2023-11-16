@@ -54,7 +54,6 @@ function Navbar() {
                     </div>
                     <div className="flex items-center">
                         <img className="img rounded" src={userData.profilePicFilename} />
-                        <FileUpload userId={userData.ID} />
                     </div>
                 </div>
             </div>
