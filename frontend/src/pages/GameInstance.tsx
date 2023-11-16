@@ -75,8 +75,8 @@ function ProblemTxt() {
                         </div>
                     </div>
                 </div>
-                {/* HELP ME HERE IDK WHY THE COLLAPSE CLASS HIDES THE CONTENT OF THE HINTS WHHYYYYYY */}
-                <div tabindex="0" class=" bg-base-200 p-3"> 
+                
+                <div tabindex="0" class="collapse bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium  text-yellow-100 problemText">
                         Hint 1
                     </div>
@@ -84,7 +84,7 @@ function ProblemTxt() {
                         <p tabindex="0" class="problemText text-yellow-100">try to find a solution of O(n) time</p>
                     </div>
                 </div>
-                <div tabindex="0" class=" bg-base-200 p-3"> 
+                <div tabindex="0" class="collapse bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium problemText text-yellow-100">
                         Hint 2
                     </div>
@@ -92,7 +92,7 @@ function ProblemTxt() {
                         <p class="problemText text-yellow-100">Keep tracked of numbers that you visited in the array</p>
                     </div>
                 </div>
-                <div tabindex="0" class=" bg-base-200 p-3"> 
+                <div tabindex="0" class="collapse bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium problemText text-yellow-100">
                         Hint 3
                     </div>
@@ -129,7 +129,7 @@ function PowerUpList() {
 
                     >
                     {/* Style each power-up as a square div with background color */}
-                    <img src="/powerUP.webp" style="width: 100px; height:100px;"></img>
+                    <img src="/powerUP.webp" style="width: 50px; height:50px;"></img>
                     </div>
                 ))}
                 </div>
@@ -149,8 +149,11 @@ function GameLayout() {
         view: () => (
             //start of html things
             <>
-                
-                <div class="bg-black-100 w-full h-full p-4 flex flex-col items-center justify-center">
+                <video autoplay muted loop playsinline id="myVideo" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1;">
+                    <source src="/videoBG.mp4" type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class=" w-full h-full p-4 flex flex-col items-center justify-center">
                     <div class="grid grid-cols-2 gap-4">
                         {/* Problem Statement  and explanation should be on the left side*/}
                         <div class="col-span-1">
@@ -172,15 +175,18 @@ function GameLayout() {
                         
                     </div>
                 </div>
-                <div class="bottomControls fixed bottom-0 w-full p-5 bg-black-100 flex justify-between items-center">
+                
+                
+                
+                <div class="bottomControls w-full p-5 bg-black-100 flex justify-between items-center">
                     
                     <div class="flex flex-grow justify-end space-x-2">
                         <PowerUpList />
-                        <div class="p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700">
-                            <img src="/RunCode.svg" class="w-30 h-8" /> 
+                        <div class="w-60 h-14 p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700">
+                            <img src="/RunCode.svg" class="" /> 
                         </div>
-                        <div class="p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700">
-                            <img src='/SubmitCode.svg' class="w-30 h-8" onclick={openGameWonModal} />
+                        <div class="w-80 h-14 p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700">
+                            <img src='/SubmitCode.svg' class="" onclick={openGameWonModal} />
                         </div>
                     </div>
 
@@ -219,9 +225,9 @@ function Editor(){ //this uses the monaco npm package to get vscode editor in a 
         },
         view: () => (
             <>
-                <div id = "container" style={{height: '800px', width:'950px', border: '1px solid #ccc', }}></div>
+                <div id = "container" style={{height: '900px', width:'950px', border: '1px solid #ccc', marginBottom: '0px' }}></div>
                 
-                <div id="opponentEditorContainer" style={{ position: 'absolute', bottom: '81px', right: '10px', height: '177px', width: '188px', border: '1px solid #ccc', zIndex: 10 }}>
+                <div id="opponentEditorContainer" style={{ position: 'absolute', bottom: '-30px', right: '2px', height: '177px', width: '188px', border: '1px solid #ccc', zIndex: 10 }}>
                     <h1 class="problemText text-red-500 text-xs text-center">Your Opponents Code</h1>
                     <div class="blur-sm">
                         
