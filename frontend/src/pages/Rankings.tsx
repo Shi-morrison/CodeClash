@@ -3,34 +3,11 @@ import TrophySilver from "../components/TrophySilver";
 import TrophyBronze from "../components/TrophyBronze";
 import Navbar from "../components/Navbar";
 import MobileBar from "../components/Mobilebar";
-import axios from "axios";
+import axios from 'axios';
 import m from 'mithril';
+import oninit from 'mithril';
 
-// Define a TypeScript interface for the user object
-interface User {
-    _id: string;
-    username: string;
-    elo: number;
-    rank: 'bronze' | 'silver' | 'gold';
-}
-
-let users: User[] = [];
-
-// Function to fetch leaderboard data
-const fetchLeaderboard = async () => {
-    try {
-        const response = await axios.get('http://localhost:44251/api/leaderboard', {
-            withCredentials: true // Important for including session cookies
-        });
-        users = response.data;
-        m.redraw(); // Trigger Mithril to update the view
-    } catch (error) {
-        console.error('Error fetching leaderboard:', error);
-    }
-};
-
-// Fetch leaderboard data on component initialization
-fetchLeaderboard();
+let users = [];
 
 function RankingsTitle() {
     return {
@@ -46,43 +23,44 @@ function RankingsTitle() {
     }
 }
 
-function RankingsBar({ user }: { user: User }) {
-
-    console.log("DSADS:" + user)
-    const getTrophy = (rank: User['rank']) => {
-        switch (rank) {
-            case 'gold':
-                return <TrophyGold />;
-            case 'silver':
-                return <TrophySilver />;
-            case 'bronze':
-                return <TrophyBronze />;
-            default:
-                return null;
-        }
-    };
-
+function RankingsBar() {
     return {
+        oninit: () => {
+            // Fetch leaderboard data when the component is initialized
+            axios.get('http://localhost:44251/api/leaderboard', { withCredentials: true })
+                .then(response => {
+                    users = response.data;
+                    m.redraw(); // Redraw the view once data is received
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        },
+
         view: () => (
-            <div className="text-white flex justify-between bg-blue-500 bar glow">
-                <div className="flex flex-row items-center relative">
-                    {/* Display username */}
-                    <div className="flex items-center">
-                        <div className="pl-4 md:text-[32px]">{user.username}</div>
+            <div className="flex flex-col">
+                {users.map((user, index) => (
+                    <div key={user._id} className="text-white flex justify-between bg-blue-500 bar glow">
+                        <div className="flex flex-row items-center relative">
+                            <div className="md:text-[32px] ml-2">{index + 1}.</div>
+                            <div className="flex items-center">
+                                <div className="pl-4 md:text-[32px]">{user.username}</div>
+                            </div>
+                        </div>
+                        <div className="flex flex-row items-center bg-[#1a3522]">
+                            <div className="px-4 md:px-8 md:text-[32px]">{user.elo}</div>
+                            {/* Add trophy logic based on user.rank */}
+                        </div>
                     </div>
-                </div>
-                <div className="flex flex-row items-center bg-[#1a3522]">
-                    {/* Display ELO */}
-                    <div className="px-4 md:px-8 md:text-[32px]">{user.elo}</div>
-                    {/* Display trophy based on rank */}
-                    {getTrophy(user.rank)}
-                </div>
+                ))}
             </div>
         )
-    }
+    };
 }
 
+
 function Rankings() {
+
     return {
         view: () => (
             <div>
@@ -92,12 +70,10 @@ function Rankings() {
                 <Navbar />
                 <RankingsTitle />
                 <div className="flex flex-col">
-                    {users.map((user) => (
-                        console.log("DSADS:" + user.username),
-                        < RankingsBar key={user._id} user={user} />
-                    ))}
+                    <RankingsBar />
                 </div>
             </div>
+
         )
     }
 }

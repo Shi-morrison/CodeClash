@@ -16,7 +16,7 @@ function Navbar() {
     })
         .then(response => {
             const data = response.data;
-            console.log("data" + data.user);
+
             if (data.user) {
                 userData = {
                     username: data.user.username,
