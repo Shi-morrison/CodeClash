@@ -14,17 +14,21 @@ io.on("connection", (socket) => {
   console.log("A new user connected");
   clients.push(socket);
 
+  socket.emit("waiting", true);
+
+  // When two clients are connected, create a room and redirect them to the game
   if (clients.length == 2) {
     const room = `room-${new Date().getTime()}`;
     clients[0].join(room);
     clients[1].join(room);
 
-    io.to(room).emit("start-game", console.log("Game started"));
+    io.to(room).emit("enter-match", "leaderboard");
 
     // Remove the clients from the array
     clients = [];
   }
 
+  // When a client essentially leaves the queue
   socket.on("disconnect", () => {
     console.log("A user disconnected");
     const index = clients.indexOf(socket);
