@@ -9,7 +9,7 @@ function DiffAndRating() {
         view: () => (
             <>
                 <div class="container mt-3">
-                    <h2 class="problemText mb-0 text-orange-100">Difficulty: <p class="text-[#14f754] mb-0"> {difficulty}</p> </h2>      
+                    <h2 class="problemText mb-0 text-orange-100">Difficulty: <span class="text-[#14f754] mb-0"> {difficulty}</span> </h2>      
                 </div>
                 
             </>
@@ -36,7 +36,7 @@ function ProblemTxt() {
             //start of html shit
             <>
         
-                <div class="codeClashFont text-6xl text-[#6ec3c1] p-2">
+                <div class="codeClashFont text-6xl text-[#6ec3c1] p-2 mb-4">
                     <h1>Problem:{problemName}</h1>
                 </div>
                 <div class="items-center p-1">
@@ -76,7 +76,7 @@ function ProblemTxt() {
                     </div>
                 </div>
                 
-                <div tabindex="0" class="collapse bg-base-200 p-3"> 
+                {/* <div tabindex="0" class="collapse bg-base-200 p-3"> 
                     <div class="collapse-title text-xl font-medium  text-yellow-100 problemText">
                         Hint 1
                     </div>
@@ -99,7 +99,7 @@ function ProblemTxt() {
                     <div class="collapse-content"> 
                         <p class="problemText text-yellow-100">try to use an array list</p>
                     </div>
-                </div>
+                </div> */}
                 {/* right now my implementation to load text from a txt file inst working 😭*/}
                 {/* <p>{problemText()}</p> right now this is just empty string for some reason */}
                 
@@ -138,21 +138,24 @@ function PowerUpList() {
     }
 }
 function GameLayout() {
-    
-    let isGameWon = stream(false);
+    let isGameWon = false;
 
-    function openGameWonModal() {
-        isGameWon(true);
-        console.log("clicked")
-    }
     return {
         view: () => (
             //start of html things
             <>
-                <video autoplay muted loop playsinline id="myVideo" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -1;">
-                    <source src="/videoBG.mp4" type="video/mp4" />
-                    Your browser does not support HTML5 video.
-                </video>
+                <div style="position: fixed; right: 0; bottom: 0; width: 100vw; height: 100vh; z-index: -1;">
+                    <video autoplay muted loop playsinline id="myVideo" style="
+                        height: 100%;
+                        width: 177.777778vh;
+                        max-width: initial;
+                        min-width: 100%;
+                        min-height: 56.25vw;
+                    ">
+                        <source src="/videoBG.mp4" type="video/mp4" />
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
                 <div class=" w-full h-full p-4 flex flex-col items-center justify-center">
                     <div class="grid grid-cols-2 gap-4">
                         {/* Problem Statement  and explanation should be on the left side*/}
@@ -161,8 +164,7 @@ function GameLayout() {
                         </div>
 
                         {/* Player's Editor  need to move this to the right side of the screen*/}
-                        <div class="col-span-1">
-                            <h1 class="problemText text-blue-200">Your Code</h1>
+                        <div class="col-span-1" style={{position: "relative"}}>
                             <Editor editorClass=" rounded-lg" />
                         {/* Opponent's Editor , should be a child of the player editor i guess*/}
                             {/* <div class="col-span-1">
@@ -185,17 +187,25 @@ function GameLayout() {
                         <div class="w-60 h-14 p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700">
                             <img src="/RunCode.svg" class="" /> 
                         </div>
-                        <div class="w-80 h-14 p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700">
-                            <img src='/SubmitCode.svg' class="" onclick={openGameWonModal} />
+                        <div class="w-80 h-14 p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700"
+                            style={
+                                // { opacity: 0.5, pointerEvents: "none" }
+                                {}
+                            }>
+                            <img src='/SubmitCode.svg' class="" onclick={() => {
+                                isGameWon = true;
+                            }} />
                         </div>
                     </div>
 
                 </div>
                 {/* Conditionally render the modal */}
                 <div class="centerChris">
-                {isGameWon() ? (
-                    <WinModal />
-                ) : null}
+                {isGameWon ? (
+                    <WinModal onclose={() => {
+                        isGameWon = false;
+                    }} />
+                ) : undefined}
 
                 </div>
             </>
@@ -207,27 +217,36 @@ function GameLayout() {
 function Editor(){ //this uses the monaco npm package to get vscode editor in a window basically. 
     let langVar = "javascript" //this is a varible that we can change to change the language they want to program in
     let editor: monaco.editor.IStandaloneCodeEditor;
-    let editorRef: HTMLElement;
     return {
-        oncreate: (vnode:any) => {
-            editorRef= vnode.dom as HTMLElement;
-            editor = monaco.editor.create(editorRef, {
-                value: "// Type your code here",
-                language: langVar,
-                theme: "vs-dark",
-                automaticLayout: true,
-            });
-        },
-        onremove: () => {
-            if(editor) {
-                editor.dispose();
-            }
-        },
         view: () => (
             <>
-                <div id = "container" style={{height: '900px', width:'950px', border: '1px solid #ccc', marginBottom: '0px' }}></div>
+                <div id = "container" style={{
+                    width: '100%',
+                    height: 'calc(100vh - 132px)',
+                    border: '1px solid #ccc',
+                    marginBottom: '0px'
+                }} oncreate={vnode => {
+                    editor = monaco.editor.create(vnode.dom, {
+                        value: "// Type your code here",
+                        language: langVar,
+                        theme: "vs-dark",
+                        automaticLayout: true,
+                    });
+                }} onbeforeremove={() => {
+                    if(editor) {
+                        editor.dispose();
+                    }
+                }}></div>
                 
-                <div id="opponentEditorContainer" style={{ position: 'absolute', bottom: '-30px', right: '2px', height: '177px', width: '188px', border: '1px solid #ccc', zIndex: 10 }}>
+                <div id="opponentEditorContainer" style={{
+                    position: 'absolute',
+                    bottom: '16px',
+                    right: '16px',
+                    height: '177px',
+                    width: '188px',
+                    border: '1px solid #ccc',
+                    zIndex: 10
+                }}>
                     <h1 class="problemText text-red-500 text-xs text-center">Your Opponents Code</h1>
                     <div class="blur-sm">
                         

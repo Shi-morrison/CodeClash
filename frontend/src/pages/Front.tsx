@@ -19,7 +19,7 @@ function Particles() {
 function Login() {
     return {
         view: () => (
-            <div className="max-h-screen">
+            <div style={{ height: "100vh", background: "#000" }}>
                 <Particles />
                 <div className="content-container flex flex-col">
                     <Title />

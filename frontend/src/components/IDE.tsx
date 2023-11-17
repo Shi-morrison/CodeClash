@@ -60,7 +60,7 @@ function IDE() {
                     ))}
                     <div>
                         {`${currentLine}`}
-                        <span class="cursor"></span>
+                        <span class="main-page-cursor"></span>
                     </div>
                 </div>
             );
