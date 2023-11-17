@@ -11,7 +11,23 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
             res.status(401).json({ error: 'User not authenticated' });
         }
     } catch (error: any) {
-        res.status(400).send(" ERROR BUDDY" + error)
+        res.status(500).send(" ERROR BUDDY" + error)
+    }
+
+}
+
+
+
+export const getLeaderboard = async (req: Request, res: Response): Promise<void> => {
+    try {
+        if (req.isAuthenticated()) {
+            const users = await User.find().sort({ elo: -1 }).limit(10);
+            res.json(users);
+        } else {
+            res.status(401).json({ error: 'User not authenticated' });
+        }
+    } catch (error: any) {
+        res.status(500).send(" ERROR BUDDY" + error)
     }
 
 }
