@@ -95,8 +95,8 @@ app.use(cors(corsOptions));
 
 
 // Enable URL-encoded body parsing for POST requests
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));  // Increase JSON payload size
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));  // Increase URL-encoded payload size
 
 
 // Create passport session , with session secret and mongoDb session data
