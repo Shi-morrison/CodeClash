@@ -8,6 +8,7 @@ import * as dotenv from 'dotenv';
 import GitHubStrategy from 'passport-github'
 import User from './db/models/userModel';
 import cors from 'cors'
+import { Request, Response, NextFunction } from 'express';
 
 
 // dotenv.config() loads environment variables from a .env file into process.env
@@ -109,6 +110,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// Middleware to check if the user is authenticated
+function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
+	if (req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/login');
+}
+
+
+
 // Paths for Oauth web flow
 app.get('/auth/github', passport.authenticate('github'));
 
@@ -120,7 +132,7 @@ app.get('/auth/github/callback',
 );
 
 // Enable '/api' endpoint and its methods.
-app.use('/api', userRoutes);
+app.use('/api', ensureAuthenticated, userRoutes);
 
 
 
