@@ -8,7 +8,7 @@ export interface IUser extends Document {
 const userSchema = new mongoose.Schema({
     githubId: { type: String, required: true, unique: true },
     username: { type: String, required: true },
-    email: { type: String, required: true },
+    email: { type: String },
     wins: { type: Number, required: true },
     losses: { type: Number, required: true },
     gamesPlayed: { type: Number, required: true },
