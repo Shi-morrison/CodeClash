@@ -58,7 +58,7 @@ export interface ProblemData {
 const problems: ProblemData[] = [];
 const problemCache = (async () => {
 	const files = await readdir(PROBLEM_DIR);
-	files.sort((a, b) => Number(a) - Number(b));
+	files.sort();
 	for (const file of files) {
 		const problem: ProblemData = JSON.parse(await readFile(join(PROBLEM_DIR, file, "metadata.json"), "utf-8"));
 		problem.examples = JSON.parse(await readFile(join(PROBLEM_DIR, file, "examples.json"), "utf-8"));
