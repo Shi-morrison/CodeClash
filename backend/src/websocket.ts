@@ -22,7 +22,11 @@ io.on("connection", (socket) => {
     clients[0].join(room);
     clients[1].join(room);
 
+    // Redirect the clients to the game
     io.to(room).emit("enter-match", "leaderboard");
+
+    // Send the room to the clients
+    io.to(room).emit("get-room", room);
 
     // Remove the clients from the array
     clients = [];
