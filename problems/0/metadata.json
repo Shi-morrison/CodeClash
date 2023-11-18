@@ -1,0 +1,10 @@
+{
+	"title": "Two Sum",
+	"difficulty": "Easy",
+	"signature": {
+		"name": "twoSum",
+		"params": ["nums", "target"]
+	},
+	"timeLimit": 1200,
+	"memoryLimit": 256
+}

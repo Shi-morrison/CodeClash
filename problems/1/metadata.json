@@ -1,0 +1,10 @@
+{
+	"title": "Palindrome Number",
+	"difficulty": "Easy",
+	"signature": {
+		"name": "isPalindrome",
+		"params": ["x"]
+	},
+	"timeLimit": 200,
+	"memoryLimit": 64
+}
