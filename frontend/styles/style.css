@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: black;
-  overflow: hidden;
+
   /* Hide scrollbars */
 }
 
@@ -18,7 +17,7 @@ body {
   }
 }
 
-.cursor {
+.main-page-cursor {
   display: inline-block;
   width: 10px; /* Width of the cursor */
   height: 1.2em; /* Height of the cursor should match the line height */
@@ -448,14 +447,18 @@ body {
 }
 
 .modalContainer {
-  width: 25rem;
-  height:18rem;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  width: 30rem;
+  position: fixed;
   left:50%;
-  top: 25%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: rgba(31, 30, 30, 0.8);
   text-align: center;
+  padding: 16px;
+  border: 1px solid #ccc;
 
 }
 
@@ -463,18 +466,18 @@ body {
   margin-bottom: 2rem;
 
 }
-.closeButtonDiv{
+.closeButton{
   margin-top: 2em;
-  background-color:gray;
+  background-color:#444;
 }
-.closeButtonDiv:hover, .returnButtonDiv:hover {
+.closeButton:hover, .returnButton:hover {
   transform: scale(1.05);
   transition: transform 0.2s;
 }
-.closeButtonDiv:active, .returnButtonDiv:active {
+.closeButton:active, .returnButton:active {
   background-color: #e5e5e5;
 }
-.returnButtonDiv {
+.returnButton {
   color: red;
   background-color:#2e2020
 }
