@@ -63,7 +63,7 @@ function RankingsBar() {
 
 function Rankings() {
     const handleWin = (winnerId: string, loserId: string) => {
-        axios.post('http://localhost:44251/api/mactchComplete', {
+        axios.post('http://localhost:44251/api/matchComplete', {
             winnerId,
             loserId
         }, { withCredentials: true })
@@ -92,7 +92,7 @@ function Rankings() {
                 <div className="px-6">
                     <div className="flex flex-col md:flex-row justify-center md:space-x-4">
                         <div className='wrapper mb-4 md:mb-0'>
-                            <div role='button' className='retro-btn'>
+                            <div role='button' className='retro-btn' onclick={() => handleWin(testPlayer1Id, testPlayer2Id)}>
                                 <span className='btn-inner'>
                                     <span className='content-wrapper'>
                                         <span className='btn-content'>
@@ -108,7 +108,7 @@ function Rankings() {
                 <div className="px-6">
                     <div className="flex flex-col md:flex-row justify-center md:space-x-4">
                         <div className='wrapper mb-4 md:mb-0'>
-                            <div role='button' className='retro-btn'>
+                            <div role='button' className='retro-btn' onclick={() => handleWin(testPlayer2Id, testPlayer1Id)}>
                                 <span className='btn-inner'>
                                     <span className='content-wrapper'>
                                         <span className='btn-content'>

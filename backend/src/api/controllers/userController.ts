@@ -76,10 +76,11 @@ function determineRank(elo: number): string {
 // Updating wins method
 function calculateEloRating(player1Rating: number, player2Rating: number, matchResult: number, kFactor: number = 32): EloRatingResult {
     const expectedScore1 = 1 / (1 + Math.pow(10, (player2Rating - player1Rating) / 400));
-    const newRating1 = player1Rating + kFactor * (matchResult - expectedScore1);
+    const newRating1 = Math.round(player1Rating + kFactor * (matchResult - expectedScore1));
+
 
     const expectedScore2 = 1 - expectedScore1;
-    const newRating2 = player2Rating + kFactor * ((1 - matchResult) - expectedScore2);
+    const newRating2 = Math.round(player2Rating + kFactor * ((1 - matchResult) - expectedScore2));
 
     return { newRating1, newRating2 };
 }
