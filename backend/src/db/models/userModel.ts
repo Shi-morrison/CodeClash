@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     dateJoined: { type: Date, default: Date.now },
     country: { type: String },
     rank: { type: String, enum: ['bronze', 'silver', 'gold'] },
-    elo: { type: Number, }
+    elo: { type: Number, default: 1500 }
 
 });
 
