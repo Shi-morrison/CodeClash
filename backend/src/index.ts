@@ -10,6 +10,7 @@ import User from './db/models/userModel';
 import cors from 'cors'
 import { Request, Response, NextFunction } from 'express';
 
+require("./websocket");
 
 // dotenv.config() loads environment variables from a .env file into process.env
 dotenv.config();
@@ -21,7 +22,7 @@ const GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET || '';
 passport.use(new GitHubStrategy({
 	clientID: GITHUB_CLIENT_ID,
 	clientSecret: GITHUB_CLIENT_SECRET,
-	callbackURL: "http://localhost:44251/auth/github/callback"
+	callbackURL: "/auth/github/callback"
 },
 	async (accessToken, refreshToken, profile, done) => {
 		try {
@@ -86,14 +87,6 @@ connectDB();
 const PORT = 44251;
 const app = express();
 
-// Cors policy access
-const corsOptions = {
-	origin: 'http://localhost:8080',
-	credentials: true,
-}
-app.use(cors(corsOptions));
-
-
 // Enable URL-encoded body parsing for POST requests
 app.use(express.json({ limit: '10mb' }));  // Increase JSON payload size
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));  // Increase URL-encoded payload size
@@ -110,17 +103,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// Middleware to check if the user is authenticated
-function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-	if (req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect('/login');
-}
-
-
-
 // Paths for Oauth web flow
 app.get('/auth/github', passport.authenticate('github'));
 
@@ -132,9 +114,7 @@ app.get('/auth/github/callback',
 );
 
 // Enable '/api' endpoint and its methods.
-app.use('/api', ensureAuthenticated, userRoutes);
-
-
+app.use('/api', userRoutes);
 
 app.listen(PORT, () => {
 	console.log(`Listening on localhost:${PORT}`);

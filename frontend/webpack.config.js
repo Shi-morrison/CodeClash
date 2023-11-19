@@ -49,7 +49,8 @@ module.exports = {
 	},
 	devServer: {
 		proxy: {
-			"/api": "http://localhost:44252/",
+			"/api": "http://localhost:44251/",
+			"/socket.io": "http://localhost:3000/",
 		},
 		historyApiFallback: {
 			index: "index.html",
