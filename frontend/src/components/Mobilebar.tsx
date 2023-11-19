@@ -1,42 +1,9 @@
 import BackArrow from "./BackArrow";
 import axios from 'axios';
 import m from 'mithril';
+import { userData } from "../user-data";
 
-function MobileBar(show = true) {
-    let userData = {
-        username: '...Loading',
-        rank: '..Loading',
-        profilePicFilename: '',
-        ID: '',
-        elo: ''
-    };
-
-    axios.get('http://localhost:44251/api/current_user', {
-        withCredentials: true // Important for including session cookies
-    })
-        .then(response => {
-            const data = response.data;
-            console.log("data" + data.user);
-            if (data.user) {
-                userData = {
-                    username: data.user.username,
-                    rank: data.user.rank,
-                    profilePicFilename: data.user.profilePicture,
-                    ID: data.user._id,
-                    elo: data.user.elo
-                };
-
-                m.redraw();
-                // Update state or context with user data
-            } else {
-                console.error('User not authenticated');
-                // Handle not authenticated case
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-
+function MobileBar() {
     return {
         view: () => (
             <div className="text-white flex flex-row justify-between mx-4">

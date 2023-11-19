@@ -2,20 +2,14 @@ import m from 'mithril';
 import axios from 'axios';
 import Flag from "../components/Flag";
 import ProfileInfo from "../components/ProfileInfo";
+import { userData } from "../user-data";
 
 function Profile() {
-    let userData = {
-        username: '...Loading',
-        rank: '..Loading',
-        profilePicFilename: '',
-        ID: '',
-        elo: ''
-    };
     let image = ''; // State for storing the image data
 
     // Function to trigger hidden file input
     function triggerFileInput() {
-        document.getElementById('hiddenFileInput').click();
+        document.getElementById('hiddenFileInput')!.click();
     }
 
     // Handle file selection and upload
@@ -43,7 +37,7 @@ function Profile() {
         if (!userData.ID || !image) return;
 
         try {
-            await axios.post(`http://localhost:44251/api/upload/${userData.ID}`, { image }, {
+            await axios.post(`/api/upload/${userData.ID}`, { image }, {
                 withCredentials: true
             });
             window.location.reload();
@@ -52,29 +46,6 @@ function Profile() {
             console.error('Upload error:', error);
         }
     }
-
-    // Fetch user data
-    axios.get('http://localhost:44251/api/current_user', {
-        withCredentials: true // Important for including session cookies
-    })
-        .then(response => {
-            const data = response.data;
-            if (data.user) {
-                userData = {
-                    username: data.user.username,
-                    rank: data.user.rank,
-                    profilePicFilename: data.user.profilePicture,
-                    ID: data.user._id,
-                    elo: data.user.elo
-                };
-                m.redraw();
-            } else {
-                console.error('User not authenticated');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
 
     return {
         view: () => (
