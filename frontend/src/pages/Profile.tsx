@@ -53,7 +53,7 @@ function Profile() {
                 <div className="flex justify-center mt-24 glow">
                     <div className="text-white profile flex flex-row relative">
                         <div className="pt-12 pl-12 flex flex-col relative">
-                            <img className="imgProfile rounded cursor-pointer" src={userData.profilePicFilename || '/path/to/default/image.jpg'} onclick={triggerFileInput} />
+                            <img className="imgProfile rounded cursor-pointer" src={userData.profilePicture || '/path/to/default/image.jpg'} onclick={triggerFileInput} />
                             <input type="file" id="hiddenFileInput" style={{ display: "none" }} onchange={handleFileChange} />
 
                             <div className="flex flex-row">

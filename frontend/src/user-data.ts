@@ -5,7 +5,7 @@ export let userData = {
 	ID: '',
 	username: '...Loading',
 	rank: '..Loading',
-	profilePicFilename: '',
+	profilePicture: '',
 	wins: 0,
 	losses: 0,
 	gamesPlayed: 0,
