@@ -6,6 +6,9 @@ import MobileBar from "../components/Mobilebar";
 import axios from 'axios';
 import m from 'mithril';
 import oninit from 'mithril';
+import Profile from "./Profile";
+
+let modalClicked= false;
 
 let users: {
     _id: string;
@@ -68,6 +71,16 @@ function Rankings() {
     return {
         view: () => (
             <div>
+                
+                {/* Conditionally render the modal */}
+                <div class="centerChris">
+                    {modalClicked ? (
+                        <Profile onclose={() => {
+                            modalClicked = false;
+                        }} />
+                    ) : undefined}
+                </div>
+
                 <div className="block md:hidden">
                     <MobileBar />
                 </div>

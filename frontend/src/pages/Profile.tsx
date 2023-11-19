@@ -49,10 +49,12 @@ function Profile() {
         }
     }
 
-    return {
-        view: () => (
+    return { //doing the brian method
+        view: (vnode: m.Vnode<{
+            onclose?: () => void;
+        }>) => (
             <>
-                <div className="flex justify-center mt-24 glow">
+                <div className="z-50 fixed w-screen flex justify-center mt-24 glow">
                     <div className="text-white profile flex flex-row relative">
                         <div className="pt-12 pl-12 flex flex-col relative">
                             <img className="imgProfile rounded cursor-pointer" src={userData.profilePicture || '/path/to/default/image.jpg'} onclick={triggerFileInput} />
@@ -79,7 +81,12 @@ function Profile() {
                         <div className="mt-8 sm:ml-4 md:ml-8 profileInfo">
                             <ProfileInfo />
                         </div>
-                        <div className="absolute top-2 right-2 cursor-pointer">X</div>
+                        <button className="absolute top-2 right-2 cursor-pointer" onclick={() => {
+                                if (vnode.attrs.onclose){
+                                    console.log("clicked!");
+                                    vnode.attrs.onclose();
+                                }
+                            }}>X</button>
                     </div>
                 </div>
             </>
