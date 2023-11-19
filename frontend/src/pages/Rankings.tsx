@@ -8,6 +8,8 @@ import m from 'mithril';
 import oninit from 'mithril';
 
 let users = [];
+const testPlayer1Id = '654e9aa5c03ea389edcf2aeb'; // Replace with actual test player 1 ID
+const testPlayer2Id = '6556b3b607abc3a2596bbebd'; // Replace with actual test player 2 ID
 
 function RankingsTitle() {
     return {
@@ -60,6 +62,20 @@ function RankingsBar() {
 
 
 function Rankings() {
+    const handleWin = (winnerId: string, loserId: string) => {
+        axios.post('http://localhost:44251/api/mactchComplete', {
+            winnerId,
+            loserId
+        }, { withCredentials: true })
+            .then(response => {
+                console.log('Elo updated', response.data);
+                // Optionally, refresh the leaderboard data
+                m.redraw();
+            })
+            .catch(error => {
+                console.error('Error updating Elo:', error);
+            });
+    };
 
     return {
         view: () => (
@@ -71,8 +87,44 @@ function Rankings() {
                 <RankingsTitle />
                 <div className="flex flex-col">
                     <RankingsBar />
+
+                </div>
+                <div className="px-6">
+                    <div className="flex flex-col md:flex-row justify-center md:space-x-4">
+                        <div className='wrapper mb-4 md:mb-0'>
+                            <div role='button' className='retro-btn'>
+                                <span className='btn-inner'>
+                                    <span className='content-wrapper'>
+                                        <span className='btn-content'>
+                                            <span className='btn-content-inner bg-red-500'>player 1 wins</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="px-6">
+                    <div className="flex flex-col md:flex-row justify-center md:space-x-4">
+                        <div className='wrapper mb-4 md:mb-0'>
+                            <div role='button' className='retro-btn'>
+                                <span className='btn-inner'>
+                                    <span className='content-wrapper'>
+                                        <span className='btn-content'>
+                                            <span className='btn-content-inner bg-red-500'>player 2 wins</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+
+
 
         )
     }
