@@ -18,10 +18,11 @@ export async function loadUserData() {
 		withCredentials: true // Important for including session cookies
 	}).then(response => {
 		const data = response.data;
-		console.log("data" + data.user);
+		console.log("data", data.user);
 		const winLoss = data.user.wins / data.user.losses
 		if (data.user) {
 			userData = { ...data.user,
+				ID: data.user._id,
 				winLossRatio: winLoss
 			};
 

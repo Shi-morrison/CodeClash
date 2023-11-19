@@ -34,6 +34,8 @@ function Profile() {
 
     // Handle file upload
     async function handleUpload() {
+        console.log("userData.ID", userData.ID);
+        console.log("image", image);
         if (!userData.ID || !image) return;
 
         try {

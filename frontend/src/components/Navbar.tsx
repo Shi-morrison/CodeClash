@@ -22,7 +22,7 @@ function Navbar() {
                         <div className="rank">{userData.rank}</div>
                     </div>
                     <div className="flex items-center">
-                        <img className="img rounded" src={userData.profilePicFilename} />
+                        <img className="img rounded" src={userData.profilePicture} />
                     </div>
                 </div>
             </div>
