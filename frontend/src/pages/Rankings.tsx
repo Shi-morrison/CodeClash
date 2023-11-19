@@ -7,7 +7,11 @@ import axios from 'axios';
 import m from 'mithril';
 import oninit from 'mithril';
 
-let users = [];
+let users: {
+    _id: string;
+    username: string;
+    elo: string | number;
+}[] = [];
 
 function RankingsTitle() {
     return {
@@ -27,7 +31,7 @@ function RankingsBar() {
     return {
         oninit: () => {
             // Fetch leaderboard data when the component is initialized
-            axios.get('http://localhost:44251/api/leaderboard', { withCredentials: true })
+            axios.get('/api/leaderboard', { withCredentials: true })
                 .then(response => {
                     users = response.data;
                     m.redraw(); // Redraw the view once data is received
