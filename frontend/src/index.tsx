@@ -12,9 +12,13 @@ import * as dotenv from "dotenv";
 const CLIENT_ID = "Iv1.96555551712a9807";
 
 function App() {
+  let currentRoom = "";
   const socket = io();
   socket.on("enter-match", (redirect: string) => {
     window.location.href = "http://localhost:8080/" + redirect;
+  });
+  socket.on("get-room", (room: string) => {
+    currentRoom = room;
   });
 
   return {
