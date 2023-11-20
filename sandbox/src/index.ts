@@ -55,7 +55,8 @@ const hostile = isolate.compileScriptSync(`${userSubmission}
 `);
 
 const timeout = setTimeout(() => {
-	verdict(Verdict.TimeLimitExceeded);
+	process.stderr.write("[TIME LIMIT EXCEEDED]");
+	process.abort();
 }, timeLimit);
 
 hostile.run(context).then(() => {

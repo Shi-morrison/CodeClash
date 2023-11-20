@@ -6,8 +6,17 @@ import MobileBar from "../components/Mobilebar";
 import axios from 'axios';
 import m from 'mithril';
 import oninit from 'mithril';
+import Profile from "./Profile";
 
-let users = [];
+let modalClicked= false;
+
+let users: {
+    _id: string;
+    username: string;
+    elo: string | number;
+}[] = [];
+const testPlayer1Id = '654e9aa5c03ea389edcf2aeb'; // Replace with actual test player 1 ID
+const testPlayer2Id = '6556b3b607abc3a2596bbebd'; // Replace with actual test player 2 ID
 
 function RankingsTitle() {
     return {
@@ -27,7 +36,7 @@ function RankingsBar() {
     return {
         oninit: () => {
             // Fetch leaderboard data when the component is initialized
-            axios.get('http://localhost:44251/api/leaderboard', { withCredentials: true })
+            axios.get('/api/leaderboard', { withCredentials: true })
                 .then(response => {
                     users = response.data;
                     m.redraw(); // Redraw the view once data is received
@@ -60,10 +69,34 @@ function RankingsBar() {
 
 
 function Rankings() {
+    const handleWin = (winnerId: string, loserId: string) => {
+        axios.post('/api/matchComplete', {
+            winnerId,
+            loserId
+        }, { withCredentials: true })
+            .then(response => {
+                console.log('Elo updated', response.data);
+                // Optionally, refresh the leaderboard data
+                m.redraw();
+            })
+            .catch(error => {
+                console.error('Error updating Elo:', error);
+            });
+    };
 
     return {
         view: () => (
             <div>
+                
+                {/* Conditionally render the modal */}
+                <div class="centerChris">
+                    {modalClicked ? (
+                        <Profile onclose={() => {
+                            modalClicked = false;
+                        }} />
+                    ) : undefined}
+                </div>
+
                 <div className="block md:hidden">
                     <MobileBar />
                 </div>
@@ -71,8 +104,44 @@ function Rankings() {
                 <RankingsTitle />
                 <div className="flex flex-col">
                     <RankingsBar />
+
+                </div>
+                <div className="px-6">
+                    <div className="flex flex-col md:flex-row justify-center md:space-x-4">
+                        <div className='wrapper mb-4 md:mb-0'>
+                            <div role='button' className='retro-btn' onclick={() => handleWin(testPlayer1Id, testPlayer2Id)}>
+                                <span className='btn-inner'>
+                                    <span className='content-wrapper'>
+                                        <span className='btn-content'>
+                                            <span className='btn-content-inner bg-red-500'>player 1 wins</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="px-6">
+                    <div className="flex flex-col md:flex-row justify-center md:space-x-4">
+                        <div className='wrapper mb-4 md:mb-0'>
+                            <div role='button' className='retro-btn' onclick={() => handleWin(testPlayer2Id, testPlayer1Id)}>
+                                <span className='btn-inner'>
+                                    <span className='content-wrapper'>
+                                        <span className='btn-content'>
+                                            <span className='btn-content-inner bg-red-500'>player 2 wins</span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
+
+
 
         )
     }

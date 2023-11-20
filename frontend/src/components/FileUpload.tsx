@@ -27,7 +27,7 @@ function handleFileChange(event: Event) {
 
 async function handleUpload(userId: string) {
     try {
-        await axios.post(`http://localhost:44251/api/upload/${userId}`, { image }, {
+        await axios.post(`/api/upload/${userId}`, { image }, {
             withCredentials: true
         });
         alert('Profile picture uploaded successfully');

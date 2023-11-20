@@ -262,6 +262,11 @@ body {
   border-bottom: 2px solid #3d6f41;
 }
 
+.somethingelse{
+  background: linear-gradient(to bottom, #b23a3a 0, #7a2828 100%);
+  border-bottom: 2px solid #9b3232;
+}
+
 .profileNavbar{
   left: 0.2em;
   right: 3.2em;

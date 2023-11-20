@@ -1,48 +1,8 @@
 import FlagMobile from "../components/FlagMobile";
 import axios from 'axios';
 import m from 'mithril';
+import { userData } from "../user-data";
 function MobileProfile() {
-    let userData = {
-        username: '...Loading',
-        rank: '..Loading',
-        profilePicFilename: '',
-        wins: 0,
-        losses: 0,
-        gamesPlayed: 0,
-        winLossRatio: 0,
-        elo: 0
-
-    };
-
-    axios.get('http://localhost:44251/api/current_user', {
-        withCredentials: true // Important for including session cookies
-    })
-        .then(response => {
-            const data = response.data;
-            console.log("data" + data.user);
-            const winLoss = data.user.wins / data.user.losses
-            if (data.user) {
-                userData = {
-                    username: data.user.username,
-                    rank: data.user.rank,
-                    profilePicFilename: data.user.profilePicture,
-                    wins: data.user.wins,
-                    losses: data.user.losses,
-                    gamesPlayed: data.user.gamesPlayed,
-                    winLossRatio: winLoss,
-                    elo: data.user.elo
-                };
-
-                m.redraw();
-                // Update state or context with user data
-            } else {
-                console.error('User not authenticated');
-                // Handle not authenticated case
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
     return {
         view: () => (
             <>
