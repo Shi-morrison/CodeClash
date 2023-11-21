@@ -1,22 +1,23 @@
 import m from 'mithril';
 import Navbar from "../components/Navbar";
+import { GameConnection, connect } from "../game-logic";
 
-const MainMenu: m.Component = () => {
+function MainMenu() {
     let isPlaying = false;
+    let con: GameConnection | undefined;
 
-    const handlePlayClick = () => {
+    const handlePlayClick = async () => {
+        con = await connect();
         isPlaying = true;
-        m.redraw();
     };
 
     const handleisPlayingBack = () => {
         isPlaying = false;
-        m.redraw();
     }
 
     // Transition for the buttons when play
     const applyTransition = (vnode: m.VnodeDOM) => {
-        const buttonStyle = vnode.dom.style;
+        const buttonStyle = (vnode.dom as HTMLElement).style;
         if (isPlaying) {
             // Apply styles for moving off-screen and fading out
             buttonStyle.transition = 'transform 1.5s ease-in-out, opacity 0.5s ease-in-out';
@@ -31,7 +32,7 @@ const MainMenu: m.Component = () => {
 
     // Transition for the logo when play
     const applyLogoTransition = (vnode: m.VnodeDOM) => {
-        const logoStyle = vnode.dom.style;
+        const logoStyle = (vnode.dom as HTMLElement).style;
         if (isPlaying) {
             logoStyle.transition = 'transform 1.5s ease-in-out, opacity 0.5s ease-in-out';
             logoStyle.transform = 'translateX(-100vw)';
@@ -44,7 +45,7 @@ const MainMenu: m.Component = () => {
 
     // Transition for the matchmaking modal when play
     const applyModalTransition = (vnode: m.VnodeDOM) => {
-        const modalStyle = vnode.dom.style;
+        const modalStyle = (vnode.dom as HTMLElement).style;
         if (isPlaying) {
             modalStyle.transition = 'opacity 1.5s ease-in-out';
             modalStyle.opacity = '1';
@@ -57,7 +58,14 @@ const MainMenu: m.Component = () => {
         view: () => (
             <div className="bg-black flex flex-col" style={{ height: "100vh", overflowX: "hidden"  }}>
                 {/* Top Navbar */}
-                <Navbar />
+                <Navbar onback={() => {
+                    if (isPlaying) {
+                        handleisPlayingBack();
+                    }
+                    else {
+                        m.route.set("/");
+                    }
+                }} />
                 <div className="w-full h-full flex justify-between items-top pt-8">
                     {/* Left side modal container */}
                     <div className="bg-red-500 py-2 p-4 mr-8 ml-8 items-center"
@@ -119,17 +127,25 @@ const MainMenu: m.Component = () => {
                         <div style={{ height: '20%', display: 'flex', justifyContent: 'center', paddingBottom: '1px' }}>
                             {/* START BUTTON */}
                             <button
+                                // onclick={() => {
+                                //     m.route.set("/gameinstance");
+                                // }}
                                 style={{
                                     height: "100px",
-                                    width: "25%",
+                                    width: "400px",
                                     background: 'linear-gradient(to bottom, #b23a3a 0, #7a2828 100%)',
                                     border: '2px solid #9b3232',
                                     color: 'white',
                                     padding: '10px 20px',
                                     fontSize: '16px',
-                                    cursor: 'pointer'
+                                    cursor: 'default',
+                                    // ...(con?.waiting
+                                    //     ? { opacity: 0.5, pointerEvents: "none" }
+                                    //     : {}),
                                 }}>
-                                    <div className="flex text-[32px] justify-center">Start</div>
+                                    <div className="flex text-[32px] justify-center">{
+                                        "Finding a match..."
+                                    }</div>
                             </button>
                         </div>
                     </div>

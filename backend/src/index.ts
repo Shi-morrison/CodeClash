@@ -109,7 +109,7 @@ app.get('/auth/github', passport.authenticate('github'));
 app.get('/auth/github/callback',
 	passport.authenticate('github', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('http://localhost:8080/leaderboard'); // Redirect to the home page
+		res.redirect('http://localhost:8080/mainmenu'); // Redirect to the home page
 	}
 );
 

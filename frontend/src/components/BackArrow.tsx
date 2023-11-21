@@ -2,16 +2,7 @@ function BackArrow() {
     return {
         view: () => (
             <>
-                <defs>
-                    <filter id="glow-effect" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                    </filter>
-                </defs>
-                <svg version="1.1" width="64" height="64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+                <svg style={{ display: "inline-block" }} version="1.1" width="64" height="64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
                     <rect x="28" y="22" width="2" height="2" fill="#000000" />
                     <rect x="30" y="22" width="2" height="2" fill="#000000" />
                     <rect x="26" y="24" width="2" height="2" fill="#000000" />

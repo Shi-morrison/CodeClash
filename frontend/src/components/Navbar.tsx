@@ -8,15 +8,23 @@ import Profile from "../pages/Profile";
 let modalClicked = false;
 function Navbar() {
     return {
-        view: () => (
+        view: (vnode: m.Vnode<{
+            onback?: () => void;
+        }>) => (
             <>
             
                 <div className="invisible md:visible text-white flex justify-between px-16 navbar">
                     <div className="flex flex-row items-center">
-                        <div className="cursor-pointer">
+                        <button onclick={() => {
+                            if (vnode.attrs.onback)
+                                vnode.attrs.onback();
+                        }}>
                             <BackArrow />
-                        </div>
-                        <div className="text-[32px]">Back</div>
+                            <span style={{
+                                lineHeight: "64px",
+                                verticalAlign: "top",
+                            }} className="text-[32px] inline-block">Back</span>
+                        </button>
                     </div>
                     <div onclick={() => {
                                     console.log("clicked");
@@ -35,7 +43,7 @@ function Navbar() {
                 </div>
 
                 {/* Conditionally render the modal */}
-                <div class="centerChris">
+                <div class="centerChris" style={{ zIndex: "500" }}>
                     {modalClicked ? (
                         <Profile onclose={() => {
                             modalClicked = false;
