@@ -10,6 +10,10 @@ export async function updateRatings({ winnerId, loserId }: { winnerId: string, l
 
     const { newRating1: newWinnerRating, newRating2: newLoserRating } = calculateEloRating(winner.elo, loser.elo, 1);
 
+    winner.wins += 1;
+    loser.losses += 1;
+    winner.gamesPlayed += 1;
+    loser.gamesPlayed += 1;
     winner.elo = newWinnerRating;
     loser.elo = newLoserRating;
     winner.rank = determineRank(newWinnerRating);
