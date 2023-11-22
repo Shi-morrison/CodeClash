@@ -1,17 +1,28 @@
 import m from 'mithril';
 import Navbar from "../components/Navbar";
-import { GameConnection, connect } from "../game-logic";
+import { GameConnection, connect, disconnect } from "../game-logic";
 
 function MainMenu() {
     let isPlaying = false;
     let con: GameConnection | undefined;
 
     const handlePlayClick = async () => {
-        con = await connect();
-        isPlaying = true;
+        const candidate = await connect();
+        if (candidate) {
+            con = candidate;
+            isPlaying = true;
+            m.redraw();
+        }
+        else {
+            alert("You have to be logged in to play");
+        }
     };
 
     const handleisPlayingBack = () => {
+        if (con) {
+            disconnect();
+            con = undefined;
+        }
         isPlaying = false;
     }
 
@@ -98,6 +109,20 @@ function MainMenu() {
                                 style={{ marginTop: "1.5%", width: "87%", height: "100px" }}
                             >
                                 <div className="flex text-[32px]" style={{ marginBottom: "5px" }}>Options</div>
+                            </button>
+                        </div>
+                        {/* Leaderboard button */}
+                        <div style={{ textAlign: "right" }}>
+                            <button
+                                onclick={() => {
+                                    m.route.set("/leaderboard");
+                                }}
+                                oncreate={applyTransition}
+                                onupdate={applyTransition}
+                                className="text-white bg-blue-500 bar glow hover:bg-blue-700 font-bold py-2 px-4 mb-4"
+                                style={{ marginTop: "1.5%", width: "84%", height: "100px" }}
+                            >
+                                <div className="flex text-[32px]" style={{ marginBottom: "5px" }}>Leaderboard</div>
                             </button>
                         </div>
                     </div>

@@ -190,9 +190,12 @@ function GameLayout() {
                 {/* Conditionally render the modal */}
                 <div class="centerChris">
                 {!modalClosed && GameConnection.instance?.didIWin !== undefined ? (
-                    <WinModal winOrLose={GameConnection.instance?.didIWin ? "win" : "lose"} onclose={() => {
-                        modalClosed = true;
-                    }} />
+                    <WinModal
+                        rating={GameConnection.instance?.newRating}
+                        winOrLose={GameConnection.instance?.didIWin ? "win" : "lose"}
+                        onclose={() => {
+                            modalClosed = true;
+                        }} />
                 ) : undefined}
 
                 </div>

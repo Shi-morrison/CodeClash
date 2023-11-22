@@ -1,6 +1,7 @@
 import m from "mithril";
 import { Socket, io } from "socket.io-client";
 import * as monaco from 'monaco-editor';
+import axios from "axios";
 
 export enum Verdict {
 	Accepted,
@@ -44,12 +45,13 @@ export class GameConnection {
 	static instance?: GameConnection;
 
 	waiting: boolean = true;
+	newRating: number | undefined;
 	didIWin: boolean | undefined;
 	socket: Socket;
 	oppCode: string = "";
 	problem: ProblemData | undefined;
 
-	constructor() {
+	constructor(token: string) {
 		this.socket = io();
 		this.socket.on("start-game", (problem: ProblemData) => {
 			this.waiting = false;
@@ -60,9 +62,9 @@ export class GameConnection {
 			m.route.set("/gameinstance");
 			m.redraw();
 		});
-		this.socket.on("game-over", (didIWin: boolean) => {
-			console.log("GAME OVER", didIWin);
+		this.socket.on("game-over", ({ didIWin, newRating }: { didIWin: boolean, newRating: number }) => {
 			this.didIWin = didIWin;
+			this.newRating = newRating;
 			m.redraw();
 		});
 		this.socket.on("opp-update", (code: string) => {
@@ -89,6 +91,7 @@ export class GameConnection {
 				m.redraw();
 			}
 		});
+		this.socket.emit("authenticate", token);
 	}
 
 	emit(type: string, ...args: any[]) {
@@ -102,9 +105,21 @@ export class GameConnection {
 
 }
 
-export async function connect(): Promise<GameConnection> {
+export async function connect(): Promise<GameConnection | false> {
 	disconnect();
-	return GameConnection.instance = new GameConnection();
+	try {
+		const res = await axios.get('/api/get_temporary_auth_token', { withCredentials: true });
+		if ("token" in res.data) {
+			const token: string = res.data.token;
+			return GameConnection.instance = new GameConnection(token);
+		}
+		else {
+			return false;
+		}
+	}
+	catch (e) {
+		return false;
+	}
 }
 
 export function disconnect() {

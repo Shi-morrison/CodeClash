@@ -10,10 +10,10 @@ const router = express.Router();
 
 router.get('/current_user', userController.getUser)
 
+router.get('/get_temporary_auth_token', userController.getTemporaryAuthToken)
+
 router.post('/upload/:userId', uploadController.uploadFile);
 
 router.get('/leaderboard', userController.getLeaderboard)
-
-router.post('/matchComplete', userController.matchResults)
 
 export default router;

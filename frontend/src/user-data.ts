@@ -13,10 +13,11 @@ export let userData = {
 	elo: '' as ('' | number)
 };
 
-export async function loadUserData() {
-	axios.get('/api/current_user', {
-		withCredentials: true // Important for including session cookies
-	}).then(response => {
+export const userDataPromise = (async () => {
+	try {
+		const response = await axios.get('/api/current_user', {
+			withCredentials: true // Important for including session cookies
+		});
 		const data = response.data;
 		console.log("data", data.user);
 		const winLoss = data.user.wins / data.user.losses
@@ -27,15 +28,14 @@ export async function loadUserData() {
 			};
 
 			m.redraw();
+			return true;
 			// Update state or context with user data
 		} else {
-			console.error('User not authenticated');
+			return false;
 			// Handle not authenticated case
 		}
-	})
-	.catch(error => {
-		console.error('Error:', error);
-	});
-}
-
-loadUserData();
+	}
+	catch (e) {
+		return false;
+	}
+})();

@@ -7,6 +7,7 @@ import Modal from "./pages/Profile";
 import MobileModal from "./pages/MobileProfile";
 import MainMenuPage from "./pages/MainMenuPage";
 import * as dotenv from "dotenv";
+import { userData, userDataPromise } from "./user-data";
 
 const CLIENT_ID = "Iv1.96555551712a9807";
 
@@ -22,6 +23,9 @@ function App() {
 
 function Leaderboard() {
   return {
+    oncreate: async () => {
+      if (!await userDataPromise) m.route.set("/");
+    },
     view: () => (
       <div>
         <Rankings />
@@ -32,6 +36,9 @@ function Leaderboard() {
 
 function GamePage() {
   return {
+    oncreate: async () => {
+      if (!await userDataPromise) m.route.set("/");
+    },
     view: () => (
       <div>
         <GameLayout />
@@ -42,6 +49,9 @@ function GamePage() {
 
 function Profile() {
   return {
+    oncreate: async () => {
+      if (!await userDataPromise) m.route.set("/");
+    },
     view: () => (
       <div>
         <Modal />
@@ -52,6 +62,9 @@ function Profile() {
 
 function MobileProfile() {
   return {
+    oncreate: async () => {
+      if (!await userDataPromise) m.route.set("/");
+    },
     view: () => (
       <div>
         <MobileModal />
@@ -62,6 +75,9 @@ function MobileProfile() {
 
 function MainMenu() {
   return {
+    oncreate: async () => {
+      if (!await userDataPromise) m.route.set("/");
+    },
     view: () => (
       <div>
         <MainMenuPage />
@@ -69,17 +85,6 @@ function MainMenu() {
     ),
   };
 }
-
-// Setup Axios interceptor
-axios.interceptors.response.use(
-  (response) => response, // On success, return the response
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      m.route.set("/"); // Redirect to login page on 401 Unauthorized
-    }
-    return Promise.reject(error);
-  }
-);
 
 m.route.prefix = "";
 

@@ -7,6 +7,7 @@ function WinModal() {
         view: (vnode: m.Vnode<{
             onclose?: () => void;
             winOrLose: "win" | "lose";
+            rating: number;
         }>) => (
             <div class="modalContainer">
                 <div class="titleTextContainer p-3">
@@ -24,6 +25,9 @@ function WinModal() {
                         {vnode.attrs.winOrLose === "win"
                             ? <img class= "checkmark" src="/checkmark.png" />
                             : undefined}
+                        <h2 class ="problemText text-[#a3f0e8]">Your new rating is {
+                            vnode.attrs.rating ?? "unknown"
+                        }</h2>
                 </div>
 
                 <button class="closeButton p-3 problemText text-purple-400" onclick={() => {
