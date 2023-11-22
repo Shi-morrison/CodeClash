@@ -9,7 +9,10 @@ function LoginButton() {
           <div className="flex flex-col md:flex-row justify-center md:space-x-4">
             <div className='wrapper mb-4 md:mb-0'>
               <div role='button' className='retro-btn'>
-                <a className='btn px-4' href={`https://github.com/login/oauth/authorize?client_id=${clientId}`} >
+                <a className='btn px-4' style={{
+                  background: 'none',
+                  border: 'none',
+                }} href={`https://github.com/login/oauth/authorize?client_id=${clientId}`} >
                   <span className='btn-inner'>
                     <span className='content-wrapper'>
                       <span className='btn-content'>
