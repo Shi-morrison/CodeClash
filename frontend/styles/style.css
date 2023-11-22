@@ -313,7 +313,7 @@ body {
 
 
 .profile{
-  width: calc(min(60%, 450px));
+  width: calc(min(max(min(60%, 450px), 400px), 100vw));
   background-color: #243e25;
   border-top: 3px solid #45794f;
   border-left: 3px solid #3d6242;
