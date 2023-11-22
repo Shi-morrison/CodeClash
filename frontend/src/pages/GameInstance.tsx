@@ -163,14 +163,14 @@ function GameLayout() {
                     
                     <div class="flex flex-grow justify-end space-x-2">
                         {/* <PowerUpList /> */}
-                        <div class="w-60 h-14 p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700"
+                        {/* <div class="w-60 h-14 p-2 bg-gradient-to-br from-gray-800 via-gray-600 to-blue-900 hover:from-blue-900 hover:via-gray-700 hover:to-purple-900 active:from-gray-700 active:via-blue-500 active:to-purple-700"
                             style={{
                                 ...(GameConnection.instance?.didIWin !== undefined
                                     ? { opacity: 0.5, pointerEvents: "none" }
                                     : {})
                             }}>
                             <img src="/RunCode.svg" class="" /> 
-                        </div>
+                        </div> */}
                         <div class="w-80 h-14 p-2 bg-gradient-to-br from-green-900 via-green-600 to-green-800 hover:from-green-900 hover:via-green-700 hover:to-green-900 active:from-green-700 active:via-green-500 active:to-green-700"
                             style={{
                                 ...(GameConnection.instance?.didIWin !== undefined
