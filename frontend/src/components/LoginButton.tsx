@@ -12,7 +12,7 @@ function LoginButton() {
                 <a className='btn px-4' style={{
                   background: 'none',
                   border: 'none',
-                }} href={`https://github.com/login/oauth/authorize?client_id=${clientId}`} >
+                }} href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${location.origin + "/auth/github/callback"}`} >
                   <span className='btn-inner'>
                     <span className='content-wrapper'>
                       <span className='btn-content'>
