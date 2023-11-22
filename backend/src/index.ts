@@ -18,6 +18,7 @@ dotenv.config();
 const MONGO_URI = process.env.MONGO_URI || 'missing';
 const GITHUB_CLIENT_ID = process.env.CLIENT_ID || '';
 const GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET || '';
+const SESSION_SECRET = process.env.CLIENT_SECRET || ''; // just reuse this xd
 const DEFAULT_ELO = 1500;
 
 // Authorization with github
@@ -96,7 +97,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));  // Increase URL
 
 // Create passport session , with session secret and mongoDb session data
 app.use(session({
-	secret: '1234',
+	secret: SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false,
 	store: MongoStore.create({ mongoUrl: MONGO_URI }),
