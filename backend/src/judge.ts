@@ -85,7 +85,7 @@ export async function judgeUserSubmission(problem: ProblemData, submission: stri
 			testCase,
 		};
 
-		const proc = spawn("node", [".", "--untrusted-code-mitigations"], {
+		const proc = spawn(process.execPath, [".", "--untrusted-code-mitigations"], {
 			cwd: SANDBOX_DIR,
 			stdio: "pipe",
 		});
