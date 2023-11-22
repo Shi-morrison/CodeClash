@@ -21,7 +21,7 @@ export async function updateRatings({ winnerId, loserId }: { winnerId: string, l
     return { winner: newWinnerRating, loser: newLoserRating, winnerRank: winner.rank, loserRank: loser.rank };
 }
 
-function determineRank(elo: number): string {
+export function determineRank(elo: number): string {
     if (elo < 1500) return 'bronze';
     if (elo < 2000) return 'silver';
     return 'gold';

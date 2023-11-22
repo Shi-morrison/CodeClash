@@ -9,6 +9,7 @@ import GitHubStrategy from 'passport-github'
 import User from './db/models/userModel';
 import cors from 'cors'
 import { Request, Response, NextFunction } from 'express';
+import { determineRank } from "./api/rating";
 
 require("./websocket");
 
@@ -17,6 +18,7 @@ dotenv.config();
 const MONGO_URI = process.env.MONGO_URI || 'missing';
 const GITHUB_CLIENT_ID = process.env.CLIENT_ID || '';
 const GITHUB_CLIENT_SECRET = process.env.CLIENT_SECRET || '';
+const DEFAULT_ELO = 1500;
 
 // Authorization with github
 passport.use(new GitHubStrategy({
@@ -41,9 +43,9 @@ passport.use(new GitHubStrategy({
 					email: email,
 					wins: 0,
 					losses: 0,
-					rank: 'bronze',
+					rank: determineRank(DEFAULT_ELO),
 					gamesPlayed: 0,
-					elo: 0
+					elo: DEFAULT_ELO
 				});
 				console.log("user:" + user)
 				await user.save();
