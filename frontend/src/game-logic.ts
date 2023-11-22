@@ -2,6 +2,7 @@ import m from "mithril";
 import { Socket, io } from "socket.io-client";
 import * as monaco from 'monaco-editor';
 import axios from "axios";
+import { fetchUserData } from "./user-data";
 
 export enum Verdict {
 	Accepted,
@@ -63,6 +64,7 @@ export class GameConnection {
 			m.redraw();
 		});
 		this.socket.on("game-over", ({ didIWin, newRating }: { didIWin: boolean, newRating: number }) => {
+			fetchUserData();
 			this.didIWin = didIWin;
 			this.newRating = newRating;
 			m.redraw();

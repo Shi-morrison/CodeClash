@@ -12,7 +12,7 @@ export let userData = {
 	elo: '' as ('' | number)
 };
 
-export const userDataPromise = (async () => {
+export async function fetchUserData() {
 	try {
 		const response = await axios.get('/api/current_user', {
 			withCredentials: true // Important for including session cookies
@@ -36,4 +36,6 @@ export const userDataPromise = (async () => {
 	catch (e) {
 		return false;
 	}
-})();
+}
+
+export const userDataPromise = fetchUserData();
