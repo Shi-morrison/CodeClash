@@ -5,6 +5,7 @@ import ProfileInfo from "../components/ProfileInfo";
 import { userData } from "../user-data";
 
 function Profile() {
+
     let image = ''; // State for storing the image data
 
     // Function to trigger hidden file input
@@ -51,37 +52,37 @@ function Profile() {
 
     return { //doing the brian method
         view: (vnode: m.Vnode<{
+            userData?: any;
             onclose?: () => void;
-        }>) => (
-            <>
+        }>) => {
+            const udata = (vnode.attrs.userData ?? userData);
+            return <>
                 <div className="z-50 fixed w-screen flex justify-center mt-24 glow">
                     <div className="text-white profile flex flex-row relative">
-                        <div className="pt-12 pl-12 flex flex-col relative">
-                            <img className="imgProfile rounded cursor-pointer" src={userData.profilePicture || '/path/to/default/image.jpg'} onclick={triggerFileInput} />
+                        <div className="p-12 flex flex-col relative">
+                            <img className={`imgProfile rounded ${vnode.attrs.userData !== undefined ? "" : "cursor-pointer"}`}
+                                src={udata.profilePicture || '/path/to/default/image.jpg'}
+                                onclick={vnode.attrs.userData !== undefined ? (() => {}) : triggerFileInput} />
                             <input type="file" id="hiddenFileInput" style={{ display: "none" }} onchange={handleFileChange} />
 
                             <div className="flex flex-row">
                                 <div className="flex flex-col">
                                     <div className="flex flex-row">
-                                        <div className="pt-2 text-[36px]">{userData.username}</div>
-                                        {userData.username !== '...Loading' && <Flag />}
+                                        <div className="pt-2 text-[36px]">{udata.username}</div>
+                                        {udata.username !== '...Loading' && <Flag />}
                                     </div>
-                                    {userData.elo !== '' && userData.rank !== '' && (
-                                        <div className="text-[24px]">{userData.elo}/{userData.rank}</div>
+                                    {udata.elo !== '' && udata.rank !== '' && (
+                                        <div className="text-[24px]">{udata.elo}/{udata.rank}</div>
                                     )}
-                                    <div className="pt-6 lg:mt-6">
-                                        <div>Achievements</div>
-                                        <div className="achievements absolute w-[50vw]">
-                                            Achievement
+                                    <div className="pt-6 mb-12">
+                                        <div className="achievements pb-6">
+                                            <ProfileInfo mobile={true} userData={vnode.attrs.userData} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-8 sm:ml-4 md:ml-8 profileInfo">
-                            <ProfileInfo />
-                        </div>
-                        <button className="absolute top-2 right-2 cursor-pointer" onclick={() => {
+                        <button className="absolute top-2 right-2 mr-[8px] text-[24px] cursor-pointer" onclick={() => {
                                 if (vnode.attrs.onclose){
                                     console.log("clicked!");
                                     vnode.attrs.onclose();
@@ -89,8 +90,8 @@ function Profile() {
                             }}>X</button>
                     </div>
                 </div>
-            </>
-        )
+            </>;
+        }
     }
 }
 

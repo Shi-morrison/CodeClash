@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  background: #000;
+}
+
 body {
 
   /* Hide scrollbars */
@@ -309,8 +313,7 @@ body {
 
 
 .profile{
-  width: calc(60%);
-  height: 60vh;
+  width: calc(min(60%, 450px));
   background-color: #243e25;
   border-top: 3px solid #45794f;
   border-left: 3px solid #3d6242;
@@ -337,7 +340,6 @@ body {
 }
 
 .achievements{
-  height: 7vh;
   background-color: #1a3522;
   border-top: 3px solid #45794f;
   border-bottom: 3px solid #162419;

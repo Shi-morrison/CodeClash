@@ -3,29 +3,33 @@ import { userData } from "../user-data";
 
 
 function ProfileInfo() {
-    let profileInfo = "py-4 px-[1px] md:px-4 lg:px-4";
+    let profileInfo = "text-center py-4 px-4";
 
     return {
-        view: () => (
-            <div className="flex flex-row w-[30vw]">
-                <div className=" pl-2 flex flex-col">
+        view: (vnode: m.Vnode<{
+            userData?: any;
+            mobile?: boolean;
+        }>) => {
+            const udata = (vnode.attrs.userData ?? userData);
+            return <div className="flex flex-row">
+                <div className=" pl-2 flex flex-col flex-grow">
                     <div className={profileInfo}>Games Played</div>
-                    <div className="px-[1px] md:px-4 lg:px-4">{userData.gamesPlayed}</div>
+                    <div className="text-center px-4">{udata.gamesPlayed}</div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-grow">
                     <div className={profileInfo}>Games Won</div>
-                    <div>{userData.wins}</div>
+                    <div className="text-center">{udata.wins}</div>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col flex-grow">
                     <div className={profileInfo}>Games Lost</div>
-                    <div>{userData.losses}</div>
+                    <div className="text-center">{udata.losses}</div>
                 </div>
-                <div className="flex flex-col">
+                {/* <div className="flex flex-col flex-grow">
                     <div className={profileInfo}>W/L</div>
-                    <div className="pr-[1px]">{userData.wins}</div>
-                </div>
-            </div>
-        )
+                    <div className="text-center pr-[1px]">{udata.wins}</div>
+                </div> */}
+            </div>;
+        }
     }
 }
 

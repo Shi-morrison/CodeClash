@@ -8,7 +8,7 @@ import m from "mithril";
 import oninit from "mithril";
 import Profile from "./Profile";
 
-let modalClicked = false;
+let currentProfileViewed: any | undefined;
 
 let users: {
   _id: string;
@@ -48,8 +48,11 @@ function RankingsBar() {
     view: () => (
       <div className="flex flex-col">
         {users.map((user, index) => (
-          <div
+          <button
             key={user._id}
+            onclick={() => {
+              currentProfileViewed = user;
+            }}
             className="text-white flex justify-between bg-blue-500 bar glow">
             <div className="flex flex-row items-center relative">
               <div className="md:text-[32px] ml-2">{index + 1}.</div>
@@ -61,7 +64,7 @@ function RankingsBar() {
               <div className="px-4 md:px-8 md:text-[32px]">{user.elo}</div>
               {/* Add trophy logic based on user.rank */}
             </div>
-          </div>
+          </button>
         ))}
       </div>
     ),
@@ -74,19 +77,19 @@ function Rankings() {
       <div>
         {/* Conditionally render the modal */}
         <div class="centerChris">
-          {modalClicked ? (
+          {currentProfileViewed !== undefined ? (
             <Profile
+              userData={currentProfileViewed}
               onclose={() => {
-                modalClicked = false;
+                currentProfileViewed = undefined;
               }}
             />
           ) : undefined}
         </div>
 
-        <div className="block md:hidden">
-          <MobileBar />
-        </div>
-        <Navbar />
+        <Navbar onback={() => {
+          m.route.set("/mainmenu");
+        }} />
         <RankingsTitle />
         <div className="flex flex-col">
           <RankingsBar />

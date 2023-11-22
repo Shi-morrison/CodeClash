@@ -4,6 +4,7 @@ import m from 'mithril';
 import FileUpload from '../components/FileUpload'
 import { userData } from "../user-data";
 import Profile from "../pages/Profile";
+import MobileBar from "./Mobilebar";
 
 let modalClicked = false;
 function Navbar() {
@@ -12,7 +13,9 @@ function Navbar() {
             onback?: () => void;
         }>) => (
             <>
-            
+                <div className="block md:hidden">
+                    <MobileBar onback={vnode.attrs.onback} />
+                </div>
                 <div className="invisible md:visible text-white flex justify-between px-16 navbar">
                     <div className="flex flex-row items-center">
                         <button onclick={() => {

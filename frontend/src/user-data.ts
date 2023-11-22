@@ -9,7 +9,6 @@ export let userData = {
 	wins: 0,
 	losses: 0,
 	gamesPlayed: 0,
-	winLossRatio: 0,
 	elo: '' as ('' | number)
 };
 
@@ -24,7 +23,6 @@ export const userDataPromise = (async () => {
 		if (data.user) {
 			userData = { ...data.user,
 				ID: data.user._id,
-				winLossRatio: winLoss
 			};
 
 			m.redraw();
