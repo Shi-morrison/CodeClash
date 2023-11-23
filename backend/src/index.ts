@@ -25,7 +25,7 @@ const DEFAULT_ELO = 1500;
 passport.use(new GitHubStrategy({
 	clientID: GITHUB_CLIENT_ID,
 	clientSecret: GITHUB_CLIENT_SECRET,
-	callbackURL: "/auth/github/callback"
+	callbackURL: "https://codeclash.app/auth/github/callback"
 },
 	async (accessToken, refreshToken, profile, done) => {
 		try {
