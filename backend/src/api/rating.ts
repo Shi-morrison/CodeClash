@@ -37,7 +37,7 @@ interface EloRatingResult {
 }
 
 // Updating wins method
-function calculateEloRating(player1Rating: number, player2Rating: number, matchResult: number, kFactor: number = 32): EloRatingResult {
+export function calculateEloRating(player1Rating: number, player2Rating: number, matchResult: number, kFactor: number = 32): EloRatingResult {
     const expectedScore1 = 1 / (1 + Math.pow(10, (player2Rating - player1Rating) / 400));
     const newRating1 = Math.round(player1Rating + kFactor * (matchResult - expectedScore1));
 
