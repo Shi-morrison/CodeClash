@@ -16,8 +16,8 @@ export async function updateRatings({ winnerId, loserId }: { winnerId: string, l
     loser.gamesPlayed += 1;
     winner.elo = newWinnerRating;
     loser.elo = newLoserRating;
-    winner.rank = determineRank(newWinnerRating);
-    loser.rank = determineRank(newLoserRating);
+    winner.rank = determineRank(newWinnerRating) as any;
+    loser.rank = determineRank(newLoserRating) as any;
 
     await winner.save();
     await loser.save();
