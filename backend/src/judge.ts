@@ -74,6 +74,11 @@ export async function getRandomProblem() {
 	return problems[Math.random() * problems.length | 0];
 }
 
+export async function getProblemByTitle(title: string) {
+	await problemCache;
+	return problems.find(x => x.title === title);
+}
+
 export async function judgeUserSubmission(problem: ProblemData, submission: string) {
 	for (const testCase of problem.tests) {
 		const input = {
