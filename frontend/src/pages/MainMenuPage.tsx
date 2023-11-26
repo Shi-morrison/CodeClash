@@ -104,17 +104,6 @@ function MainMenu() {
                                     <div className="flex text-[16px] md:text-[32px]" style={{ marginBottom: "5px" }}>Play</div>
                                 </button>
                             </div>
-                            {/* Options button */}
-                            <div className="text-center md:text-right">
-                                <button
-                                    oncreate={applyTransition}
-                                    onupdate={applyTransition}
-                                    className="text-white bg-blue-500 bar glow hover:bg-blue-700 font-bold py-2 px-4 mb-4 w-80% md:w-[87%]"
-                                    style={{ marginTop: "1.5%" }}
-                                >
-                                    <div className="flex text-[16px] md:text-[32px]" style={{ marginBottom: "5px" }}>Options</div>
-                                </button>
-                            </div>
                             {/* Leaderboard button */}
                             <div className="text-center md:text-right">
                                 <button
@@ -123,7 +112,7 @@ function MainMenu() {
                                     }}
                                     oncreate={applyTransition}
                                     onupdate={applyTransition}
-                                    className="text-white bg-blue-500 bar glow hover:bg-blue-700 font-bold py-2 px-4 mb-4 w-80% md:w-[84%]"
+                                    className="text-white bg-blue-500 bar glow hover:bg-blue-700 font-bold py-2 px-4 mb-4 w-80% md:w-[87%]"
                                     style={{ marginTop: "1.5%" }}
                                 >
                                     <div className="flex text-[16px] md:text-[32px]" style={{ marginBottom: "5px" }}>Leaderboard</div>
