@@ -37,12 +37,8 @@ export const getTemporaryAuthToken = async (req: Request, res: Response): Promis
 
 export const getLeaderboard = async (req: Request, res: Response): Promise<void> => {
     try {
-        if (req.isAuthenticated()) {
-            const users = await User.find().sort({ elo: -1 }).limit(10);
-            res.json(users);
-        } else {
-            res.status(401).json({ error: 'User not authenticated' });
-        }
+        const users = await User.find().sort({ elo: -1 }).limit(10);
+        res.json(users);
     } catch (error: any) {
         res.status(500).send(" ERROR BUDDY" + error)
     }
