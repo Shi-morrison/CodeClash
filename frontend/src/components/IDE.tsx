@@ -11,16 +11,15 @@ function IDE() {
     let currentLine = '';
     // Define the solution as an array of strings, each representing a line of code
     const solution = [
-        "bry-guy",
-        "he lookin real shy",
-        "he never gets high",
-        "he refuses to cry",
-        "he's into guys",
-        "but he might be bi",
-        "he sometimes lie",
-        "he always ask why",
-        "he never wants to apply",
-        "and right now he nigh nigh",
+        "Welcome to CodeClash!",
+        "Please sign in with your GitHub.",
+        "CodeClash is a competitive dueling",
+        "platform that matches you with an",
+        "opponent to race for the fastest",
+        "solution for a coding problem.",
+        "Learn coding solutions while climbing the",
+        "competitive CodeClash ladder!",
+        "Don't forget your semicolons.",
     ];
 
     function typeSolution(index = 0) {
@@ -29,7 +28,7 @@ function IDE() {
                 if (lineIndex < solution[index].length) {
                     currentLine += solution[index].charAt(lineIndex);
                     m.redraw();
-                    setTimeout(() => typeCommand(lineIndex + 1), 75); // Typing speed
+                    setTimeout(() => typeCommand(lineIndex + 1), 90); // Typing speed
                 } else {
                     lines.push(currentLine);
                     currentLine = '';
